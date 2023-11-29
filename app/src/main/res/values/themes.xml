@@ -1,0 +1,132 @@
+<resources>
+    <!-- Base application theme. -->
+
+    <style name="AppTheme">
+        <item name="colorAccent">@color/primary_light</item>
+        <item name="colorPrimary">@color/primary_light</item>
+        <item name="colorPrimaryDark">@color/primary_light</item>
+        <item name="android:textColorSecondary">@color/black</item>
+
+    </style>
+
+    <style name="AppTheme.HeartBeatFlash">
+        <item name="android:statusBarColor">@color/bg</item>
+        <item name="colorOnPrimary">@color/primaryDark</item>
+        <item name="colorOnSecondary">@color/primaryAccent</item>
+        <item name="colorPrimary">@color/primaryDark</item>
+        <item name="colorPrimaryVariant">@color/primaryDark</item>
+        <item name="colorSecondary">@color/primaryAccent</item>
+        <item name="colorSecondaryVariant">@color/primaryAccent</item>
+        <item name="android:textColorSecondary">@color/black</item>
+
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:splitMotionEvents">false</item>
+        <item name="android:windowEnableSplitTouch">false</item>
+
+    </style>
+
+    <style name="Base.Theme.BloodPresure" parent="Theme.AppCompat.DayNight.NoActionBar">
+
+    </style>
+
+    <style name="AlertDialog.AppCompat.NumberPicker">
+        <item name="android:colorControlNormal">#14274E</item>
+    </style>
+
+    <style name="style_main" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:statusBarColor">#14274E</item>
+    </style>
+
+    <style name="style_main1" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:statusBarColor">#14274E</item>
+    </style>
+
+    <style name="style_blue" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:statusBarColor">#14274E</item>
+    </style>
+
+    <style name="style_heart_rate" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:statusBarColor">#14274E</item>
+    </style>
+
+    <style name="style_red" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:statusBarColor">#14274E</item>
+    </style>
+
+    <style name="style_vip" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:statusBarColor">#14274E</item>
+    </style>
+
+    <style name="BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/BottomSheetDialogStyle</item>
+    </style>
+
+    <style name="BottomSheetDialogStyle">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:backgroundTint">@android:color/transparent</item>
+    </style>
+
+    <style name="Theme.Design.BottomSheetDialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowAnimationStyle">@style/Animation.Design.BottomSheetDialog</item>
+        <item name="bottomSheetStyle">@style/Widget.Design.BottomSheet.Modal</item>
+    </style>
+
+    <style name="Theme.Design.Light"></style>
+
+    <style name="Theme.Material3.Dark.BottomSheetDialog"></style>
+
+    <style name="Theme.Material3.DayNight.BottomSheetDialog"></style>
+
+    <style name="Theme.Material3.Light.BottomSheetDialog"></style>
+
+    <style name="Theme.MaterialComponents.BottomSheetDialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowAnimationStyle">
+            @style/Animation.MaterialComponents.BottomSheetDialog
+        </item>
+        <item name="bottomSheetStyle">@style/Widget.MaterialComponents.BottomSheet.Modal</item>
+    </style>
+
+    <style name="Theme.MaterialComponents.DayNight.BottomSheetDialog"></style>
+
+    <style name="Theme.MaterialComponents.Light.BottomSheetDialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowAnimationStyle">
+            @style/Animation.MaterialComponents.BottomSheetDialog
+        </item>
+        <item name="bottomSheetStyle">@style/Widget.MaterialComponents.BottomSheet.Modal</item>
+    </style>
+
+    <style name="ThemeOverlay.Material3.BottomSheetDialog"></style>
+
+    <style name="CustomDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowMinWidthMajor">80%</item>
+        <item name="android:windowMinWidthMinor">80%</item>
+    </style>
+
+    <style name="ThemeOverlay.MaterialComponents.BottomSheetDialog"></style>
+
+    <style name="AppTheme.Ads" parent="@style/Theme.AppCompat.Light">
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">@color/abc_search_url_text_pressed</item>
+        <item name="android:paddingLeft">3dp</item>
+        <item name="android:paddingRight">6dp</item>
+        <item name="android:paddingBottom">1dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minWidth">15dp</item>
+        <item name="android:minHeight">15dp</item>
+        <item name="android:text">Ad</item>
+    </style>
+
+    <style name="Theme.BloodPresure" parent="Base.Theme.BloodPresure" />
+</resources>

@@ -1,0 +1,573 @@
+{
+	"questions":[
+		{
+			"image": "",
+			"question":"What’s hypertension ?",
+			"answer":"
+
+			<br>
+			<strong>- Hypertension, also known as high or elevated blood pressure, is a disorder in which the blood vessels have persistently high pressure, which can damage them. The higher the tension, the more effort the heart has to put into pumping. </strong>
+			<br>
+
+			"
+		},
+		{
+			"image": "",
+			"question":"  Who is at higher risk of high blood pressure ? ",
+			"answer":"
+
+			<br>
+			<strong>- African-American, people with obesity, smokers, patients who are usually very stressed or anxious. Those who drink too much alcohol (more than 1 drink a day for women and more than 2 a day for men), consumers of high amounts of salt in their meals and those who have a family history of high blood pressure or diabetes. </strong>
+			<br>
+			"
+		},
+		{
+
+			"question":"How common is hypertension worldwide ?",
+			"answer":"
+			<br>
+			<strong>- There are 1,500 million hypertensive people in the world, 20% of the total population. Many of them do not know it, they believe that the stressful rhythm of life is normal and they ignore the signals that the body gives them that something is wrong. </strong>
+			<br>
+			"
+		},
+		{
+
+			"question":"What are the consequences of hypertension ? ",
+			"answer":"
+			<br>
+			<strong>- As the heart must do more work, its walls increase in size, requiring more blood to feed, and angina or myocardial infarction occurs. Overworking the heart ends up exhausting it, causing heart failure. </strong>
+			<br>
+
+			<br>
+			<strong>-  The kidney may eventually develop kidney failure. The involvement of the arteries of the brain produces cerebral infarcts or hemorrhages. The sight is damaged by the involvement of the small vessels of the retina. </strong>
+			<br>
+			"
+		},
+
+		{
+			"question":" What are the symptoms of hypertension ? ",
+			"answer":"
+			<br>
+			<strong>-  Although there are no specific symptoms, hypertension can cause headaches and loss of balance in its more advanced stage. Later it can cause complications such as cerebral hemorrhage, hemiplegia, myocardial infarction, or kidney failure. </strong>
+			<br>
+			"
+		},
+
+		{
+			"question":" Can high blood pressure be cured ? ",
+			"answer":"
+			<br>
+			<strong>- Hypertension is frequently treated with permanent or temporary antihypertensive medications, depending on the need of the patient in conjunction with changes in lifestyle and eating habits. But in some cases, it may have a clear cause and a cure. </strong>
+			<br>
+			"
+		},
+		{
+			"question":" How does the genetic factor influence ?  ",
+			"answer":"
+			<br>
+			<strong>- When a patient has a hypertensive father or mother, the chances of suffering from hypertension are 25%. If they are both, these amount to 50%. Genetic inheritance plays a determining role in the development of this pathology. </strong>
+			<br>
+			"
+		},
+		{
+			"question":" How does a low salt diet favor the patient ?  ",
+			"answer":"
+			<br>
+			<strong>- It all depends on the type of patient. The general recommendation is not to eat salty foods (salted meats, sausages, preserves). However, a strict diet is not recommended unless the person has edema or heart failure. Low salt intake directly lowers blood pressure.  </strong>
+			<br>
+			"
+		},
+
+		{
+			"question":" Is there a direct relationship between obesity or hypertension ? ",
+			"answer":"
+			<br>
+			<strong>- The relationship is more direct than in the case of salt. Being overweight increases the possibility of developing high blood pressure by two times, which is why a change in habits is necessary, in such a way that, sometimes, just weight reduction is enough to control blood pressure. </strong>
+			<br>
+			"
+
+		},
+		{
+			"question":" How does hypertension affect kidney function ? ",
+			"answer":"
+			<br>
+			<strong>- It produces characteristic lesions that affect the blood vessels and damages the kidney s interstitium on the kidney.  </strong>
+			<br>
+
+			<br>
+			<strong>- The glomerulus  (the place where the blood is filtered from harmful substances to the body) is also damaged. 15-20% of dialysis patients are the consequence of inadequate control of hypertension. </strong>
+			<br>
+			"
+		},
+
+		{
+			"question":" What risk does the consumption of tobacco and alcohol bring in hypertensive patients ? ",
+			"answer":"
+			<br>
+			<strong>- Quite. In tobacco, a hypertensive smoker is more likely to suffer from coronary disease than one who does not smoke. On the other hand, alcohol causes significant hormonal changes, which can cause or favor hypertension development. </strong>
+			<br>
+			"
+		},
+		{
+			"question":" How do I know if I've got high blood pressure ? ",
+			"answer":"
+			<br>
+			<strong>- The truth is you cannot know your blood pressure unless you have it measured and every adult should know his or her blood pressure. </strong>
+			<br>
+
+			<br>
+			<strong>- Although headaches and nose bleeds can be the result of very high blood pressure, there aremany more innocent causes for these common ailments. </strong>
+			<br>
+			"
+		},
+		{
+			"question":" What is measured during a blood pressure measurement ? ",
+			"answer":"
+			<br>
+			<strong>- Systole (SYS): This is also known as the upper blood pressure. It is the maximum pressure that is exerted by the blood upon the blood vessels. </strong>
+			<br>
+
+			<br>
+			<strong>- Diastole (DIA): This is also known as under blood pressure. It is the minimum pressure that is exerted by the blood upon the blood vessels.  </strong>
+			<br>
+
+			<br>
+			<strong>- Pulse rate (PUL): This is the number of heartbeats per minute. </strong>
+			<br>
+			"
+		},
+		{
+			"question":" What are the normal blood pressure values ? ",
+			"answer":"
+
+			<p   style=\"color:#a6ce38\"> 1 Normal—Less Than 120/80 </p>
+
+			<p   style=\"color:#ffec00\"> 2 Elevated—130-139/80-89 </p>
+
+			<p   style=\"color:#feb600\"> 3 High Blood Pressure (Stage 1)—130-139/80-89 </p>
+
+			<p   style=\"color:#ba3a01\"> 4 High Blood Pressure (Stage 2)—140-180/90-120 </p>
+
+			<p   style=\"color:#990811\"> 5 Hypertensive Crisis—More Than 180/120  </p>
+
+
+			"
+		},
+
+		{
+			"question":" Why the Change in Blood Pressure Guidelines ?  ",
+			"answer":"
+			<br>
+			<strong>- The change in blood pressure guidelines is due primarily to the study of the risks of high blood pressure in patients over time. </strong>
+			<br>
+
+			<br>
+			<strong>- Experts believe that these new guidelines, if followed correctly and consistently, will assist more patients in avoiding preventable conditions such as heart attack and stroke through proper management of blood pressure earlier than before. </strong>
+			<br>
+
+			"
+		},
+
+
+		{
+			"question":" What Are the Health Risks Associated With High Blood Pressure ?  ",
+			"answer":"
+			<br>
+			<strong>- According to the American Heart Association, high blood pressure can cause a number of life- threatening conditions, including : </strong>
+			<br>
+
+			<p   style=\"color:#feb600\"> 1 Stroke </p>
+
+			<p   style=\"color:#feb600\"> 2 Heart Failure </p>
+
+			<p   style=\"color:#feb600\"> 3 Heart Attack </p>
+
+			<p   style=\"color:#feb600\"> 4 Kidney Disease or Failure </p>
+
+
+			<br>
+			<strong>- High blood pressure can also be responsible for life-changing conditions including vision loss,
+			sexual dysfunction and peripheral artery disease (PAD).
+			</strong>
+			<br>
+
+
+			"
+		},
+
+
+		{
+			"question":" What Do the Numbers Mean ? ",
+			"answer":"
+			<br>
+			<strong>-  Blood pressure is measured using two numbers, written with one over the other. For example, 120/70 would be read as “one-twenty over seventy.” In this example, 120 refers to the pressure of your blood against blood vessels when the heart is actively pumping, while 70 refers to the pressure on your artery walls when your heart is at rest between beats. </strong>
+			<br>
+			"
+		},
+		{
+			"question":"What Are Some Ways You Can Prevent or Manage High Blood Pressure ? ",
+			"answer":"
+			<br>
+			<strong>- The best way to prevent or manage high blood pressure is through proper diet, regular exercise and consistent weight and stress management. </strong>
+			<br>
+
+			<br>
+			<strong>- Lowering your sodium intake through reducing your consumption of salt and processed foods, reducing your daily caffeine intake and establishing an effective and appropriate exercise routine are good places to start. </strong>
+			<br>
+			"
+		},
+		{
+			"question":" What are the consequences of high blood pressure ?  ",
+			"answer":"
+			<br>
+			<strong>- An excessively elevated arterial blood pressure initially acts on the blood vessels by making their walls more rigid and thicker. Over the long term, it can have serious consequences for organs such as the heart, the brain or the kidneys.</strong>
+			<br>
+
+			<br>
+			<strong>- It remains an important risk factor in cardiovascular diseases. Stroke and heart attack are the most frequently observed consequences in persons with untreated high blood pressure. </strong>
+			<br>
+			"
+		},
+		{
+			"question":" What is individual blood pressure ? ",
+			"answer":"
+			<br>
+			<strong>- International hypertension societies recommend taking several blood pressure measurements on several days, under comparable circumstances and during the same time of the day (morning and evening) and then form the mean value of these measurements. This average value represents the individual blood pressure. </strong>
+			<br>
+			"
+		},
+		{
+			"question":" Why should more than only one blood pressure measurement be taken ?  ",
+			"answer":"
+			<br>
+			<strong>- Blood pressure constantly fluctuates, even in rest condition. Hence, doctors and hypertension societies recommend taking at least two readings every time and average the results. Several measurements provide much more reliable information about the blood pressure than just one single measurement. </strong>
+			<br>
+			"
+		},
+		{
+			"question":" What can be done, if constantly high or low blood pressure values are obtained ? ",
+			"answer":"
+
+			<p   style=\"color:#feb600\"> 1. Consult your doctor </p>
+
+			<p   style=\"color:#feb600\"> 2. General lifestyle measures could help to lower the blood pressure. </p>
+
+
+
+			"
+		},
+		{
+			"question":" Are blood pressure self-measurements at home accurate ?",
+			"answer":"
+			<br>
+			<strong>-   As a matter of fact, blood pressure measurement taken at home is a better estimate of the individual’s blood pressure value than blood pressure measurement in the doctor’s office.   </strong>
+			<br>
+
+			<br>
+			<strong>-  One reason is that many people suffer from white coat effect in the doctor’s office. However, the opposite is also seen: an underestimated blood pressure at the doctor’s office as compared to the measurement at home. This is called masked hypertension. </strong>
+			<br>
+			"
+		},
+		{
+			"question":" On which arm should the measurement be taken ? ",
+			"answer":"
+			<br>
+			<strong>-  It is recommended that doctors perform a double arm measurement on a patient’s first visit in order to determine which arm to be measured in the future. The arm with the higher blood pressure should be measured. </strong>
+			<br>
+			"
+		},
+		{
+			"question":" Is hypertension a cause for erectile dysfunction in men ? ",
+			"answer":"
+			<br>
+			<strong>-  Hypertension is a common cause for erectile dysfunction (ED) in men. When you have vascular disease such as hypertension, you have it all over your body and it can affect all bodily functions including erections. Adequate blood flow is needed to get and maintain an erection and any problems with blood flow can result in ED.  </strong>
+			<br>
+
+			<br>
+			<strong>-  This is why it s important men seek treatment for ED – it may be due to underlying medical conditions such as hardening of the arteries (atherosclerosis) or diabetes. Early detection of these diseases allows patients to receive treatment right away and possibly prevent complications. </strong>
+			<br>
+
+
+			"
+		},
+		{
+			"question":" Can blood pressure be cured ? ",
+			"answer":"
+			<br>
+			<strong>-  Although not 'cured' as such, modern therapeutic approaches to blood pressure are very effective and generally very safe. However, if treatment is stopped the high blood pressure usually returns reasonably quickly. </strong>
+			<br>
+			"
+		},
+		{
+			"question":" Will hypertension go away without treatment ? ",
+			"answer":"
+			<br>
+			<strong>-  It is rare for hypertension to disappear by itself. The general rule is that blood pressure gets higher with time and the risk of complications goes up also.  </strong>
+			<br>
+			"
+		},
+		{
+			"question":" What is a dangerously high blood pressure - how high does it have to be before you have a stroke or a heart attack ? ",
+			"answer":"
+			<br>
+			<strong>-  Any degree of high blood pressure is associated with increased risk of stroke and heart attack, but the higher the pressure, the higher the risks. </strong>
+			<br>
+
+			<br>
+			<strong>-  Sustained blood pressures of over 200/120 are considered potentially dangerous and if associated with for example visual trouble or heart failure they require emergency treatment. </strong>
+			<br>
+			"
+		},
+
+		{
+			"question":" What foods should I limit ? ",
+			"answer":"
+
+			<br>
+			<strong>-  Foods rich in sodium, semi-cured and cured cheeses, cold cuts, sausages, industrialized hamburgers, salty or smoked meats should be limited. Foods rich in saturated fat and trans fat butter, aged cheeses, fatty meats, meat products (sausages, hamburgers, cold cuts, etc.) and foods rich in sugars, sugar, honey, jam, sugary drinks, juices fruit, industrial confectionery, sweet candies, chocolates and derivatives. </strong>
+			<br>
+
+			"
+		},
+
+		{
+			"question":" How to substitute sodium ? ",
+			"answer":"
+
+			<br>
+			<strong>-  Substitute salt for other seasonings such as spices or aromatic herbs. </strong>
+			<br>
+
+			"
+		},
+
+		{
+			"question":" What types of medications are there to combat high blood pressure ? ",
+			"answer":"
+
+			<br>
+			<strong>-  There are many different types of medications to treat high blood pressure. Choosing the right medicine for you is the sole choice of your doctor. The main antihypertensive drugs are the following:  </strong>,
+			<br>
+
+			<br>
+			<strong>-  diuretics, beta-blockers, angiotensin converting enzyme inhibitors, angiotensin II receptor antagonists, calcium channel blockers, direct vasodilators relax the muscles in the walls of the blood vessels, renin inhibitors. </strong>
+			<br>
+
+			"
+		},
+		{
+			"question":" Are all medications the same ? ",
+			"answer":"
+
+			<br>
+			<strong>-  No, the choice of the appropriate drug will depend on your GP, after medical evaluation and diagnosis of the specific pathology, since there are different groups of drugs with different mechanisms of action. </strong>
+			<br>
+
+			"
+		},
+		{
+			"question":" Can hypertension pills be combined with any other medication ? ",
+			"answer":"
+
+			<br>
+			<strong>-  People with high blood pressure need to know that some cold medications, such as decongestant nasal drops, certain syrups or preparations such as ephedrine, or anti-inflammatories, can interfere with antihypertensive medication. </strong>
+			<br>
+
+			"
+		},
+		{
+			"question":" Can two different drugs be combined for hypertension ? ",
+			"answer":"
+
+			<br>
+			<strong>-  Yes, due to their different mechanisms of action, they can be used in combination with a mandatory medical prescription.  </strong>
+			<br>
+
+			"
+		},
+		{
+			"question":" All hypertensive patients should stop eating salt ? ",
+			"answer":"
+
+			<br>
+			<strong>-  Yes, since 50% of the patients respond well to this measure; unless the physician has the means to diagnose that the patient is not sensitive to salt  </strong>
+			<br>
+
+			"
+		},
+		{
+			"question":" What is the recommended daily amount of salt for a person with hypertension ? ",
+			"answer":"
+
+			<br>
+			<strong>-  The recommended amount of salt is about 5 grams a day. </strong>
+			<br>
+
+			"
+		},
+		{
+			"question":" Can I treat my hypertension with garlic ? ",
+			"answer":"
+
+			<br>
+			<strong>-  No, although some studies refer its benefits, they are not evinced based successful treatments  </strong>
+			<br>
+
+			"
+		},
+		{
+			"question":" Is hypertension cured ? ",
+			"answer":"
+
+			<br>
+			<strong>-  Hypertension, which is called essential, cannot be cured. It is a lifelong disease, controlled by following a healthy lifestyle and taking prescribed medication. Hypertensions secondary to other diseases can only be cured, and not always, when the disease that causes it is solved. </strong>
+			<br>
+
+			"
+		},
+		{
+			"question":" What is the maximum amount of alcohol per day for a person with hypertension ? ",
+			"answer":"
+
+			<br>
+			<strong>-  The recommended amount for men is a maximum of 20 g per day, which is equivalent to a 200 cc glass (or 200 ml) of wine, or two beers, or an 80 ml distilled beverage per day. This amount should be halved in women, but prevention always comes first.  </strong>
+			<br>
+
+			"
+		},
+		{
+			"question":" What type of exercise is the most recommended ? ",
+			"answer":"
+
+			<br>
+			<strong>-  The recommended exercise is aerobic, that is, walking, swimming, cycling, Nordic walking, running, etc. It has to be continued over time and do it for at least 20 to 30 minutes a day, at least three days a week.   </strong>
+			<br>
+
+			<br>
+			<strong>-  The exercise plan must be individualized, taking into account your age, if you have exercised before, if you suffer from illnesses that contraindicate it, and your current state of health. </strong>
+			<br>
+
+			"
+		},
+		{
+			"question":" Why is it important for the hypertensive patient to exercise regularly ? ",
+			"answer":"
+
+			<br>
+			<strong>-  Physical exercise contributes to the reduction of blood pressure figures. It also slows the heart rate and reduces the risk of angina pectoris or heart attack (ischemic heart disease). In addition, it contributes to weight loss, to the improvement of cholesterol and triglyceride levels, to the fixation of bone calcium and to reduce anxiety states. </strong>
+			<br>
+
+			"
+		},
+		{
+			"question":" Are there any medications that raise blood pressure levels ? ",
+			"answer":"
+
+			<br>
+			<strong>-  Among the substances or drugs that can raise blood pressure are: licorice, oral contraceptives, anti-inflammatories, cortisone, cocaine, amphetamines and effervescent medications. </strong>
+			<br>
+
+			"
+		},
+		{
+			"question":" What pressure device is recommended to use ? ",
+			"answer":",
+
+			<br>
+			<strong>-  The electronic devices that comply with the correct validation standards are currently recommended, due to their ease of use and reliability, preferably the arm </strong>
+			<br>
+
+			"
+		},
+		{
+			"question":" How to initiate antihypertensive treatment ?   ",
+			"answer":"
+
+			<br>
+			<strong>-  Once arterial hypertension has been confirmed, lifestyle modifications (weight loss, limiting salt intake, increasing exercising) are recommended as a first step of the high blood pressure management.  </strong>
+			<br>
+
+			<br>
+			<strong>-  The choice of a first antihypertensive drug, will not only depend on the blood pressure values but will also be determined by the presence of additional diseases (comorbidities) as well as the presence of other cardiovascular risk factors (diabetes, hypercholesterolemia, renal diseases… </strong>
+			<br>
+
+			"
+		},
+		{
+			"question":" Is it better to take antihypertensive medications in the morning or evening ? ",
+			"answer":"
+
+			<br>
+			<strong>-  Currently, there is not sufficient evidence to support a preference for dosing antihypertensive medications at any particular time. Most important is help each patient identify the dosing schedule that best suits their preferences and will optimize medication adherence. </strong>
+			<br>
+
+			"
+		},
+		{
+			"question":" Do all anti-hypertensive medications and dosages need to be prescribed by a physician or can these protocols use task-sharing with non-physician health workers ? ",
+			"answer":"
+
+			<br>
+			<strong>-  There are many examples of successful task-sharing models in which non-physician health workers (NPHW) prescribe and adjust medications, and which resulted in improved hypertension control. There is evidence that NPHWs can be trained to reliably and effectively assess and manage cardiovascular risks and other chronic medical conditions in primary healthcare settings </strong>
+			<br>
+
+			"
+		},
+		{
+			"question":" What are the recommended drugs to be used for the treatment of hypertension in elderly ? ",
+			"answer":"
+
+			<br>
+			<strong>-  Hypertension in the elderly is mainly systolic. Trials especially addressing treatment of isolated systolic hypertension have shown the benefits of thiazides and calcium channels blockers (CCBs). Certain trials like LIFE showed the advantages of angiotensin receptors blockers (ARBs) in the treatment of hypertension in elderly, especially in patients with left ventricular hypertrophy (LVH). </strong>
+			<br>
+
+			"
+		},
+		{
+			"question":" How many hypertensive patients achieve target blood pressure ? ",
+			"answer":"
+
+			<br>
+			<strong>-  Several large-scale population-based studies in different parts of the world indicate that only 25-30% of hypertensive patients actually achieve target blood pressure with life style and medicinal measures. </strong>
+			<br>
+
+			"
+		},
+		{
+			"question":" Which percentage of hypertensive patients requires more than one drug to achieve target blood pressure ? ",
+			"answer":"
+
+			<br>
+			<strong>-  Several large-scale international studies show that more than 75% of patients require more than one drug to achieve target blood pressure.  </strong>
+			<br>
+
+			"
+		},
+		{
+			"question":" What are the advantages of the use of fixed dose combinations in the treatment of hypertension ? ",
+			"answer":"
+
+			<br>
+			<strong>-  The major advantages of the use of fixed dose combinations are: </strong>
+			<br>
+
+			<p   style=\"color:#feb600\"> 1 - they improve patient compliance to antihypertensive therapy </p>
+
+			<p   style=\"color:#feb600\"> 2 - they improve the degree of blood pressure control </p>
+			<p   style=\"color:#feb600\"> 3 - they reduce the number of adverse events.</p>
+
+			"
+		},
+
+		{
+			"question":" If I have diabetes do I have to be more careful to control my high blood pressure ? ",
+			"answer":"
+			<br>
+			<strong>-  As diabetes itself increases the risk of cardiovascular complications, blood pressure (which can further increase risk) needs careful attention. In general most doctors will consider treating blood pressure in patients with diabetes at lower levels than in patients who do not have diabetes.</strong>
+			<br>
+			"
+
+
+		}
+	]
+}

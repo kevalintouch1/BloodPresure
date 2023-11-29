@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.READ_APP_BADGE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <uses-permission android:name="com.bpmonitor.bloodpressure.bloodapp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+
+    <application
+        android:name="com.blood.presure.NewBloodApplication"
+        android:allowBackup="false"
+        android:hardwareAccelerated="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@drawable/ic_launcher"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme.HeartBeatFlash">
+        <activity
+            android:name="com.blood.presure.activity.NewSplashActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/style_main">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.blood.presure.activity.NewResultActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.blood.presure.activity.NewHomeActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/style_red" />
+        <activity
+            android:name="com.blood.presure.activity.NewHowtoUseActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/style_main" />
+        <activity
+            android:name="com.blood.presure.activity.NewHeartRateActivityNew"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/style_heart_rate" />
+        <activity
+            android:name="com.blood.presure.activity.NewResultHeartActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/style_main" />
+        <activity
+            android:name="com.blood.presure.activity.NewWebViewActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/style_main" />
+        <activity
+            android:name="com.blood.presure.activity.NewLanguageActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/style_main" />
+        <activity
+            android:name="com.blood.presure.activity.NewInfoActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/style_main" />
+        <activity
+            android:name="com.blood.presure.activity.NewAddRecordActivityNew"
+            android:screenOrientation="portrait"
+            android:theme="@style/style_main" />
+        <activity
+            android:name="com.blood.presure.activity.NewAllRecordsActivityNew"
+            android:screenOrientation="portrait"
+            android:theme="@style/style_main" />
+        <activity
+            android:name="com.blood.presure.activity.NewBloodPressureActivityNew"
+            android:screenOrientation="portrait"
+            android:theme="@style/style_red" />
+        <activity
+            android:name="com.blood.presure.activity.NewBaseActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/style_blue" />
+        <activity
+            android:name="com.blood.presure.activity.NewLanguageFirstActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/style_main1" />
+        <activity
+            android:name="com.blood.presure.activity.NewOnBoardActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/style_main" />
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3928990988343664~5909499588" />
+    </application>
+
+</manifest>

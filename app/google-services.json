@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "447693947515",
+    "project_id": "bloodpresure-2accd",
+    "storage_bucket": "bloodpresure-2accd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:447693947515:android:e2df6eaaa64d66fab458de",
+        "android_client_info": {
+          "package_name": "com.blood.presure"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbKmrMLND5_JBlL7mlTxLXl1ih42azPRY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:447693947515:android:a57d0d3f5ccf8763b458de",
+        "android_client_info": {
+          "package_name": "com.moniter.bloodpresure"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbKmrMLND5_JBlL7mlTxLXl1ih42azPRY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,45 @@
+*{
+	background: #252C46;
+	padding: 0px;
+	margin: 0px;
+    font-family: system-ui;
+    line-height: 29px;
+    color: #e1e4ed;
+    }
+
+h1{
+	background: #444F75;
+	font-size: 26px;
+    margin: 13px 24px;
+    color: #fff;
+    padding: 20px;
+    border-radius: 11px;
+}
+h2{
+    font-size: 26px;
+	background: #444F75;
+    margin: 13px 24px;
+    border-left: 12px solid #6d4bf5;
+    padding-left: 18px;
+    padding: 20px;
+    border-radius: 11px;
+}
+
+
+h3{
+    font-size: 22px;
+    margin: 13px 24px;
+	background: #444F75;
+
+    padding: 16px;
+    border-radius: 11px;
+}
+
+p{
+	background: #444F75;
+    margin: 13px 24px;
+    font-size: 19px;
+
+    padding: 20px;
+    border-radius: 11px;
+}

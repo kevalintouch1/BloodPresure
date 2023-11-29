@@ -1,0 +1,388 @@
+{
+	"questions":[
+		{
+			"image": "",
+			"question":" Qué es la hipertensión ? ",
+			"answer":"
+
+			<br>
+			<strong>- La hipertensión, también conocida como presión arterial alta o elevada, es un trastorno en el que los vasos sanguíneos tienen una presión alta constantemente, lo que puede dañarlos. Cuanto mayor sea la tensión, mayor será el esfuerzo que debe hacer el corazón para bombear.  </strong>
+			<br>
+
+			"
+		},
+		{
+			"image": "",
+			"question":" Quién tiene un mayor riesgo de hipertensión arterial ? ",
+			"answer":"
+
+			<br>
+			<strong>- Los afroamericanos, personas con obesidad, fumadores, pacientes que por lo general se encuentran muy estresados o ansiosos. Aquellos que beben alcohol en exceso (más de 1 copa al día para las mujeres y más de 2 al día para los hombres), consumidores de grandes cantidades de sal en sus comidas y aquellos con antecedentes familiares de hipertensión arterial o diabetes.  </strong>
+			<br>
+
+			"
+		},
+		{
+			"image": "",
+			"question":" Qué tan frecuente es la hipertensión a nivel mundial ? ",
+			"answer":"
+
+			<br>
+			<strong>- Existen 1,500 millones de hipertensos en todo el mundo, el 20% de la población total. Muchos de ellos no lo saben, creen que el ritmo estresante de la vida es normal e ignoran las señales que les da el cuerpo de que algo anda mal. </strong>
+			<br>
+
+			"
+		},
+		{
+			"image": "",
+			"question":" Cuáles son las consecuencias de la hipertensión ? ",
+			"answer":"
+
+			<br>
+			<strong>- A medida que el corazón debe trabajar más, sus paredes aumentan de tamaño, requiriendo más sangre para alimentarse y ocurre así una angina o infarto de miocardio. La sobrecarga al corazón termina por agotarlo, produciendo insuficiencia cardíaca.  </strong>
+			<br>
+
+			<br>
+			<strong>- Con el tiempo, el riñón puede desarrollar insuficiencia renal. El compromiso de las arterias del cerebro produce infartos o hemorragias cerebrales. La vista puede dañarse debido a la participación de los pequeños vasos de la retina.  </strong>
+			<br>
+
+			"
+		},
+		{
+			"image": "",
+			"question":" Cuáles son los síntomas de la hipertensión ? ",
+			"answer":"
+
+			<br>
+			<strong>- Aunque no existen síntomas específicos, la hipertensión puede producir dolores de cabeza y pérdida del equilibrio en su etapa más avanzada. Posteriormente puede ocasionar complicaciones como hemorragia cerebral, hemiplejía, infarto de miocardio o insuficiencia renal.  </strong>
+			<br>
+
+			"
+		},
+		{
+			"image": "",
+			"question":" Se puede curar la hipertensión arterial ? ",
+			"answer":"
+
+			<br>
+			<strong>- La hipertensión se trata habitualmente con medicamentos antihipertensivos de forma permanente o temporal, según la necesidad del paciente junto con cambios en el estilo de vida y hábitos alimenticios. Pero en algunos casos, puede tener una causa evidente y una cura.  </strong>
+			<br>
+
+			"
+		},
+		{
+			"image": "",
+			"question":" Cómo influye el factor genético ? ",
+			"answer":"
+
+			<br>
+			<strong>- Cuando un paciente tiene un padre o una madre hipertensos, las posibilidades de padecer hipertensión son del 25%. Si ambos lo son, estas posibilidades ascienden al 50%. La herencia genética juega un papel determinante en el desarrollo de esta patología.  </strong>
+			<br>
+
+			"
+		},
+		{
+			"image": "",
+			"question":" Cómo favorece una dieta baja en sal al paciente ? ",
+			"answer":"
+
+			<br>
+			<strong>- Todo depende del tipo de paciente. La recomendación general es no comer alimentos salados (carnes saladas, embutidos, conservas). Sin embargo, no se aconseja una dieta estricta a menos que la persona tenga edema o insuficiencia cardíaca. La ingesta baja de sal reduce directamente la presión arterial.  </strong>
+			<br>
+
+			"
+		},
+		{
+			"image": "",
+			"question":" Existe una relación directa entre la obesidad y la hipertensión ? ",
+			"answer":"
+
+			<br>
+			<strong>- La relación es más directa que en el caso de la sal. Tener sobrepeso aumenta dos veces la posibilidad de desarrollar hipertensión arterial, por lo que es necesario un cambio de hábitos, de tal manera que, en algunas ocasiones, solo la reducción de peso es suficiente para controlar la presión arterial.  </strong>
+			<br>
+
+			"
+		},
+		{
+			"image": "",
+			"question":" Qué riesgo trae el consumo de tabaco y alcohol en los pacientes hipertensos ? ",
+			"answer":"
+
+			<br>
+			<strong>- Riesgo importante. En el caso del tabaco, un fumador hipertenso tiene más probabilidades de sufrir una enfermedad coronaria que uno que no fuma. Por otro lado, el alcohol produce importantes cambios hormonales, que pueden provocar o favorecer el desarrollo de hipertensión.  </strong>
+			<br>
+
+			"
+		},
+		{
+			"image": "",
+			"question":" Cómo la hipertensión afecta la función renal ? ",
+			"answer":"
+
+			<br>
+			<strong>- Produce lesiones características que afectan los vasos sanguíneos y dañan el intersticio renal. El glomérulo (lugar donde se filtra la sangre de las sustancias nocivas para el cuerpo) también está dañado. El 15-20% de los pacientes en diálisis son consecuencia de un control inadecuado de la hipertensión.  </strong>
+			<br>
+
+			"
+		},
+		{
+			"image": "",
+			"question":" Cómo sé si tengo hipertensión arterial ? ",
+			"answer":"
+
+			<br>
+			<strong>- La verdad es que no puede saber su presión arterial a menos que la mida y todos los adultos deben conocer su presión arterial.  </strong>
+			<br>
+
+			<br>
+			<strong>- Aunque los dolores de cabeza y las hemorragias nasales pueden ser el resultado de una presión arterial muy alta, existen diversas causas más inofensivas para estas afecciones comunes. </strong>
+			<br>
+
+			"
+		},
+		{
+			"image": "",
+			"question":" Qué se mide durante una medición de la presión arterial ? ",
+			"answer":"
+
+			<br>
+			<strong>- Sistólica (SYS): También conocida como presión arterial superior. Es la presión máxima que ejerce la sangre sobre los vasos sanguíneos.  </strong>
+			<br>
+
+			<br>
+			<strong>- Diastólica (DIA): También conocida como presión arterial inferior. Es la presión mínima que ejerce la sangre sobre los vasos sanguíneos.  </strong>
+			<br>
+
+			<br>
+			<strong>- Pulso (PUL): es el número de latidos por minuto. </strong>
+			<br>
+
+			"
+		},
+		{
+			"image": "",
+			"question":" Cuáles son los valores normales de la presión arterial ? ",
+			"answer":"
+
+			<p   style=\"color:#a6ce38\"> 1 Normal—Menos de 120/80  </p>
+
+			<p   style=\"color:#ffec00\"> 2 Elevada—130-139/80-89 </p>
+
+			<p   style=\"color:#feb600\"> 3 Hipertensión Arterial (Estadio 1)—130-139/80-89 </p>
+
+			<p   style=\"color:#ba3a01\"> 4 Hipertensión Arterial (Estadio 2)—140-180/90-120 </p>
+
+			<p   style=\"color:#990811\"> 5 Crisis Hipertensiva—Mayor a 180/120* </p>
+
+			"
+		},
+		{
+			"image": "",
+			"question":" Por qué el Cambio en las Guías de Presión Arterial ? ",
+			"answer":"
+
+			<br>
+			<strong>- El cambio en las guías de la presión arterial se debe principalmente al estudio de los riesgos de hipertensión arterial en los pacientes a lo largo del tiempo.   </strong>
+			<br>
+
+			<br>
+			<strong>- Los expertos creen que estas nuevas guías, si se siguen de manera correcta y constante, ayudarán a más pacientes a evitar enfermedades prevenibles como infartos y accidentes cerebrovasculares mediante el control adecuado de la presión arterial más tempranamente.  </strong>
+			<br>
+
+			"
+		},
+		{
+			"image": "",
+			"question":" Cuáles Son los Riesgos Para la Salud Asociados Con la Hipertensión Arterial ? ",
+			"answer":"
+
+			<br>
+			<strong> Según la American Heart Association, la hipertensión arterial puede producir una serie de enfermedades potencialmente mortales, que incluyen:  </strong>
+			<br>
+
+			<p   style=\"color:#feb600\"> 1 Accidente cerebrovascular </p>
+
+			<p   style=\"color:#feb600\"> 2 Insuficiencia Cardiaca </p>
+
+			<p   style=\"color:#feb600\"> 3 Infarto Cardiaco</p>
+
+			<p   style=\"color:#feb600\"> 4 Enfermedad o Insuficiencia Renal </p>
+
+
+			<br>
+			<strong> La hipertensión arterial también puede ser responsable de enfermedades que cambian la vida, incluida la pérdida de la visión, la disfunción sexual y la enfermedad arterial periférica (EAP).
+			</strong>
+			<br>
+
+			"
+		},
+		{
+			"image": "",
+			"question":" Qué Significan Los Números ? ",
+			"answer":"
+
+			<br>
+			<strong>- La presión arterial se mide utilizando dos números, escritos uno sobre el otro. Por ejemplo, 120/70 se leería como ciento veinte sobre setenta.  </strong>
+			<br>
+
+			<br>
+			<strong>- En este ejemplo, 120 se refiere a la presión de la sangre sobre los vasos sanguíneos cuando el corazón está bombeando activamente, mientras que 70 se refiere a la presión sobre las paredes de las arterias cuando el corazón se encuentra en reposo entre latidos.  </strong>
+			<br>
+
+			"
+		},
+		{
+			"image": "",
+			"question":" Cuáles Son Algunas De Las Formas En Las Que Puede Prevenir o Controlar La Hipertensión Arterial ? ",
+			"answer":"
+
+			<br>
+			<strong>- La mejor forma de prevenir o controlar la hipertensión arterial es mediante una dieta adecuada, ejercicio regular y control constante del peso y del estrés. Reducir la ingesta de sodio mediante la disminución del consumo de sal y alimentos procesados, disminuir la ingesta diaria de cafeína y establecer una rutina de ejercicio eficaz y adecuada son buenos puntos para empezar. </strong>
+			<br>
+
+			"
+		},
+		{
+			"image": "",
+			"question":" Cuáles son las consecuencias de la hipertensión arterial ? ",
+			"answer":"
+
+			<br>
+			<strong>- Una presión arterial excesivamente elevada actúa en primer lugar sobre los vasos sanguíneos haciendo que sus paredes sean más rígidas y gruesas. A largo plazo, puede tener graves consecuencias para órganos como el corazón, el cerebro o los riñones. Sigue siendo un factor de riesgo importante en las enfermedades cardiovasculares.  </strong>
+			<br>
+
+			<br>
+			<strong>- El accidente cerebrovascular y el infarto cardíaco son las consecuencias observadas con mayor frecuencia en personas con hipertensión arterial no tratada.  </strong>
+			<br>
+
+			"
+		},
+		{
+			"image": "",
+			"question":" Qué es la presión arterial individual ? ",
+			"answer":"
+
+			<br>
+			<strong>- Las sociedades internacionales de hipertensión arterial recomiendan tomar diversas mediciones de la presión durante varios días, en circunstancias comparables y en la misma hora del día (mañana y tarde) para luego obtener el promedio de estas mediciones. Este valor promedio representa la presión arterial individual.  </strong>
+			<br>
+
+			"
+		},
+		{
+			"image": "",
+			"question":" Por qué debería tomar más de una medición de la presión arterial ? ",
+			"answer":"
+
+			<br>
+			<strong>- La presión arterial varía constantemente, incluso en condiciones de reposo. Por lo tanto, los médicos y las sociedades de hipertensión recomiendan tomar al menos dos lecturas cada vez y promediar los resultados. Diversas mediciones brindan información mucho más confiable sobre la presión arterial que una sola. </strong>
+			<br>
+
+			"
+		},
+		{
+			"image": "",
+			"question":" Qué se puede hacer si se obtienen valores de presión arterial constantemente altos o bajos ? ",
+			"answer":"
+
+			<br>
+			<strong>- 1. Consultar a su médico  </strong>
+			<br>
+
+			<br>
+			<strong>- 2. Las medidas generales sobre el estilo de vida podrían ayudar a reducir la presión arterial.  </strong>
+			<br>
+
+			"
+		},
+		{
+			"image": "",
+			"question":" Son correctas las automedidas de presión arterial en casa ? ",
+			"answer":"
+
+			<br>
+			<strong>- De hecho, la medición de la presión arterial tomada en casa es una mejor estimación del valor de la presión arterial del individuo que la medición realizada en el consultorio médico. Una razón es que muchas personas sufren del efecto de bata blanca en el consultorio.   </strong>
+			<br>
+
+			<br>
+			<strong>- Sin embargo, también se observa lo contrario: una presión arterial infravalorada en el consultorio en comparación con la medición en casa. Esto se llama hipertensión enmascarada.  </strong>
+			<br>
+
+			"
+		},
+		{
+			"image": "",
+			"question":" En qué brazo se debe tomar la presión arterial ? ",
+			"answer":"
+
+			<br>
+			<strong>- Se recomienda que los médicos realicen una medición en ambos brazos durante la primera visita del paciente para determinar qué brazo se utilizará para evaluar en el futuro. Se debe medir en el brazo con la cifra de presión arterial más alta. </strong>
+			<br>
+
+			"
+		},
+		{
+			"image": "",
+			"question":" Es la hipertensión una causa de disfunción eréctil en los hombres ? ",
+			"answer":"
+
+			<br>
+			<strong>- La hipertensión es una causa frecuente de disfunción eréctil (DE) en los hombres. Cuando tiene una enfermedad vascular como la hipertensión, la tiene en todo el cuerpo y puede afectar todas las funciones corporales, incluidas las erecciones. Se necesita un flujo sanguíneo adecuado para lograr y mantener una erección y cualquier problema con el flujo sanguíneo puede producir disfunción eréctil.   </strong>
+			<br>
+
+			<br>
+			<strong>- Por eso es importante que los hombres busquen tratamiento para la DE - puede deberse a afecciones médicas subyacentes, como el endurecimiento de las arterias (aterosclerosis) o la diabetes. La detección temprana de estas enfermedades permite a los pacientes recibir tratamiento de inmediato y posiblemente prevenir complicaciones.  </strong>
+			<br>
+
+			"
+		},
+		{
+			"image": "",
+			"question":" Se puede curar la presión arterial ? ",
+			"answer":"
+
+			<br>
+			<strong>- Aunque no se puede curar como tal, los enfoques terapéuticos modernos para la presión arterial son muy efectivos y por lo general muy seguros. Sin embargo, si se interrumpe el tratamiento, la hipertensión arterial suele regresar bastante rápido.  </strong>
+			<br>
+
+			"
+		},
+		{
+			"image": "",
+			"question":" La hipertensión desaparecerá sin tratamiento ? ",
+			"answer":"
+
+			<br>
+			<strong> -Es raro que la hipertensión desaparezca por sí sola. La regla general es que la presión arterial aumenta con el tiempo y el riesgo de complicaciones también lo hace.  </strong>
+			<br>
+
+			"
+		},
+		{
+			"image": "",
+			"question":" Qué es una presión arterial peligrosamente alta? - ¿Qué tan alta debe estar antes de sufrir un accidente cerebrovascular o un infarto cardíaco ? ",
+			"answer":"
+
+			<br>
+			<strong>- Cualquier grado de presión arterial alta se asocia con un mayor riesgo de accidente cerebrovascular e infarto cardíaco, pero cuanto mayor es la presión, mayores son los riesgos. Las presiones arteriales sostenidas de más de 200/120 se consideran potencialmente peligrosas y si se asocian, por ejemplo, con problemas visuales o insuficiencia cardíaca, requieren tratamiento de emergencia.  </strong>
+			<br>
+
+			"
+		},
+		{
+			"image": "",
+			"question":" Si tengo diabetes, debo tener más cuidado para controlar mi hipertensión arterial ? ",
+			"answer":"
+
+			<br>
+			<strong>- Como la diabetes en sí aumenta el riesgo de complicaciones cardiovasculares, la presión arterial (que puede aumentar aún más el riesgo) necesita una cuidadosa atención.  </strong>
+			<br>
+
+			<br>
+			<strong>- En general, la mayoría de los médicos considerarán tratar la presión arterial en pacientes con diabetes a niveles más bajos que en pacientes que no tienen diabetes. </strong>
+			<br>
+
+			"
+
+		}
+	]
+}

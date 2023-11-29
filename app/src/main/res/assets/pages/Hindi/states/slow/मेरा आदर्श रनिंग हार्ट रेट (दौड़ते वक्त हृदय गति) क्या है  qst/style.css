@@ -1,0 +1,55 @@
+*{
+	background: #FFF;
+	padding: 0px;
+	margin: 0px;
+    font-family: system-ui;
+    line-height: 29px;
+
+    
+	
+	
+    }
+
+h1{
+	
+	border: 1px outset;
+	background: #F5F2F2;
+   font-size: 22px;
+    margin: 13px 24px;
+    color: #000;
+    padding: 20px;
+    border-radius: 11px;
+}
+h2{
+	column-rule-color: red;
+       font-size: 26px;
+    margin: 13px 24px;
+    padding-left: 18px;
+}
+
+
+h3{
+	border: 1px outset;
+	background: #F5F2F2;
+   font-size: 22px;
+    margin: 13px 24px;
+	color: #AF0003;
+	
+	
+
+	
+
+}
+
+p{
+	 font-family: Georgia, "Times New Roman", Times, serif;
+
+    font-size: 19px;
+    padding: 20px;
+	color: #000;
+
+
+	
+	
+
+}
