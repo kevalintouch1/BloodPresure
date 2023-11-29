@@ -13,9 +13,6 @@ import com.blood.presure.R;
 
 
 public class NewFragmentOnBoardOne extends Fragment {
-    private ImageView mImgView;
-    private TextView tvContent;
-    private TextView tvTitle;
 
     public View onCreateView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
         View inflate = layoutInflater.inflate(R.layout.fragment_onboard, viewGroup, false);
@@ -24,10 +21,10 @@ public class NewFragmentOnBoardOne extends Fragment {
     }
 
     private void iniViews(View view) {
-        this.mImgView = (ImageView) view.findViewById(R.id.img_bg_onboard);
-        this.tvTitle = (TextView) view.findViewById(R.id.tv_title);
-        this.tvContent = (TextView) view.findViewById(R.id.tv_content);
-        this.tvTitle.setText("Blood Pressure Tool");
-        this.tvContent.setText("Track, analyze and export your blood pressure");
+        ImageView mImgView = view.findViewById(R.id.img_bg_onboard);
+        TextView tvTitle = view.findViewById(R.id.tv_title);
+        TextView tvContent = view.findViewById(R.id.tv_content);
+        tvTitle.setText("Blood Pressure Tool");
+        tvContent.setText("Track, analyze and export your blood pressure");
     }
 }

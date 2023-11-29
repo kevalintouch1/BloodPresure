@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.blood.presure.R;
 
 public class Helper {
+    public static final String ADS_CONSENT_SET_KEY = "ADS_CONSENT_SET";
+    public static final String EEA_USER_KEY = "EEA_USER";
     public static boolean is_show_open_ad = true;
     public static int showAdsNumberCount = 1;
     public static final String REMOVE_ADS_KEY = "REMOVE_ADS";

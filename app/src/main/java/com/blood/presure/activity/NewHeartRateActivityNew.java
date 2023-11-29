@@ -1,43 +1,33 @@
 package com.blood.presure.activity;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.util.DisplayMetrics;
-import android.view.Display;
 import android.view.TextureView;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
-import com.appizona.yehiahd.fastsave.FastSave;
 import com.blood.presure.Fragment.NewChartFragment;
 import com.blood.presure.Fragment.NewInfoFragment;
 import com.blood.presure.Fragment.NewMeasureFragment2;
+import com.blood.presure.Fragment.NewSettingsFragment;
 import com.blood.presure.Fragment.NewTrackerFragment;
-import com.blood.presure.Interface.stateReport;
-import com.blood.presure.Utils.AdAdmob;
+import com.blood.presure.Interface.MeasuringCallbacks;
+import com.blood.presure.R;
+import com.blood.presure.Utils.NewSettingUtils;
+import com.blood.presure.Utils.NewUscreen;
+import com.blood.presure.ads.AdmobAdsHelper;
 import com.blood.presure.anaylzer.OutputAnalyzer;
 import com.blood.presure.chart.NewCameraService;
 import com.blood.presure.chart.NewChartView;
-import com.blood.presure.Utils.NewEUGeneralHelper;
-import com.blood.presure.Interface.MeasuringCallbacks;
-import com.blood.presure.Utils.NewSettingUtils;
-import com.blood.presure.Fragment.NewSettingsFragment;
-import com.blood.presure.Utils.NewUscreen;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
-import com.google.android.gms.ads.AdView;
-import com.blood.presure.R;
 
 import java.util.ArrayList;
 
@@ -49,13 +39,11 @@ public class NewHeartRateActivityNew extends NewBaseActivity {
     String TAG;
     public OutputAnalyzer analyzer;
     MeasuringCallbacks callback;
-    private NewCameraService newCameraService;
+    private final NewCameraService newCameraService;
     TextureView cameraTextureView;
     View chartV;
-    private ImageView imgBack;
     View infoV;
     boolean interIsLoading;
-    private LinearLayout lnBanner;
     private final Handler mainHandler;
     View measureV;
     boolean measuring = false;
@@ -106,7 +94,7 @@ public class NewHeartRateActivityNew extends NewBaseActivity {
     }
 
     public void startMeasuring(TextureView textureView, NewChartView newChartView, MeasuringCallbacks measuringCallbacks) {
-        this.analyzer = new OutputAnalyzer(this, newChartView, this.mainHandler, (stateReport) null);
+        this.analyzer = new OutputAnalyzer(this, newChartView, this.mainHandler, null);
         ArrayList arrayList = new ArrayList();
         for (int i = 0; i < 70; i++) {
             arrayList.add(Float.valueOf(0.0f));
@@ -124,7 +112,7 @@ public class NewHeartRateActivityNew extends NewBaseActivity {
                 if (outputAnalyzer != null) {
                     outputAnalyzer.stop();
                 }
-                this.analyzer = new OutputAnalyzer(this, (NewChartView) findViewById(R.id.graphTextureView), this.mainHandler, (stateReport) null);
+                this.analyzer = new OutputAnalyzer(this, findViewById(R.id.graphTextureView), this.mainHandler, null);
                 this.measuring = false;
                 MeasuringCallbacks measuringCallbacks = this.callback;
                 if (measuringCallbacks != null) {
@@ -154,81 +142,28 @@ public class NewHeartRateActivityNew extends NewBaseActivity {
     @Override
     public void onResume() {
         super.onResume();
-        new AdAdmob(NewHeartRateActivityNew.this).LoadAdMobInterstitialAd(NewHeartRateActivityNew.this);
     }
 
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         instance = this;
-        setContentView((int) R.layout.activity_heart_rate);
-        this.imgBack = (ImageView) findViewById(R.id.img_back);
-//        this.lnBanner = (LinearLayout) findViewById(R.id.ln_banner);
+        setContentView(R.layout.activity_heart_rate);
+        ImageView imgBack = findViewById(R.id.img_back);
         this.measureV = findViewById(R.id.measureV);
         this.trackerV = findViewById(R.id.trackerV);
         this.infoV = findViewById(R.id.infoV);
         this.settings = findViewById(R.id.settings);
         this.chartV = findViewById(R.id.chartV);
         showMeasure();
-//        BannerInApp.getInstance().showBanner(this, this.lnBanner, "ca-app-pub-4227016782733744/6287259797");
-        this.measureV.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                NewHeartRateActivityNew.this.showMeasure();
-                new AdAdmob(NewHeartRateActivityNew.this).ShowAds(NewHeartRateActivityNew.this);
-            }
-        });
-        this.trackerV.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                NewHeartRateActivityNew.this.showTracker(false);
-                new AdAdmob(NewHeartRateActivityNew.this).ShowAds(NewHeartRateActivityNew.this);
-            }
-        });
-        this.infoV.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                NewHeartRateActivityNew.this.showKnowledge();
-                new AdAdmob(NewHeartRateActivityNew.this).ShowAds(NewHeartRateActivityNew.this);
-            }
-        });
-        this.settings.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                NewHeartRateActivityNew.this.showSettings();
-                new AdAdmob(NewHeartRateActivityNew.this).ShowAds(NewHeartRateActivityNew.this);
-            }
-        });
-        this.chartV.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                NewHeartRateActivityNew.this.showChart();
-                new AdAdmob(NewHeartRateActivityNew.this).ShowAds(NewHeartRateActivityNew.this);
-            }
-        });
-        this.imgBack.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                new AdAdmob(NewHeartRateActivityNew.this).ShowAds(NewHeartRateActivityNew.this);
-                NewHeartRateActivityNew.this.finish();
-            }
-        });
+        this.measureV.setOnClickListener(view -> NewHeartRateActivityNew.this.showMeasure());
+        this.trackerV.setOnClickListener(view -> NewHeartRateActivityNew.this.showTracker(false));
+        this.infoV.setOnClickListener(view -> NewHeartRateActivityNew.this.showKnowledge());
+        this.settings.setOnClickListener(view -> NewHeartRateActivityNew.this.showSettings());
+        this.chartV.setOnClickListener(view -> NewHeartRateActivityNew.this.showChart());
+        imgBack.setOnClickListener(view -> onBackPressed());
 
-        LinearLayout adContainer = (LinearLayout) findViewById(R.id.adView);
-        AdView adView = new AdView(this);
-        adView.setAdUnitId(FastSave.getInstance().getString("BANNER", ""));
-        adContainer.addView(adView);
-        AdSize adSize = getAdSize(this);
-        adView.setAdSize(adSize);
-        adView.loadAd(new AdRequest.Builder().build());
-
-    }
-
-    private AdSize getAdSize(Activity mActivity) {
-
-
-        Display display = mActivity.getWindowManager().getDefaultDisplay();
-        DisplayMetrics outMetrics = new DisplayMetrics();
-        display.getMetrics(outMetrics);
-
-        float widthPixels = outMetrics.widthPixels;
-        float density = outMetrics.density;
-
-        int adWidth = (int) (widthPixels / density);
-        return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(mActivity, adWidth);
+        new AdmobAdsHelper(this).bannerAds(this,findViewById(R.id.adView));
+        AdmobAdsHelper.LoadAdMobInterstitialAd(this);
     }
 
 
@@ -246,7 +181,7 @@ public class NewHeartRateActivityNew extends NewBaseActivity {
         this.settings.setAlpha(0.5f);
         this.chartV.setAlpha(0.5f);
         removeAllFragments();
-        getSupportFragmentManager().beginTransaction().add((int) R.id.fragment_container_view, (Fragment) new NewMeasureFragment2()).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container_view, new NewMeasureFragment2()).commit();
     }
 
     public void showKnowledge() {
@@ -256,7 +191,7 @@ public class NewHeartRateActivityNew extends NewBaseActivity {
         this.infoV.setAlpha(1.0f);
         this.chartV.setAlpha(0.5f);
         removeAllFragments();
-        getSupportFragmentManager().beginTransaction().add((int) R.id.fragment_container_view, (Fragment) new NewInfoFragment()).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container_view, new NewInfoFragment()).commit();
     }
 
     public void showTracker(boolean z) {
@@ -266,7 +201,7 @@ public class NewHeartRateActivityNew extends NewBaseActivity {
         this.infoV.setAlpha(0.5f);
         this.chartV.setAlpha(0.5f);
         removeAllFragments();
-        getSupportFragmentManager().beginTransaction().add((int) R.id.fragment_container_view, (Fragment) new NewTrackerFragment()).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container_view, new NewTrackerFragment()).commit();
     }
 
     public void showSettings() {
@@ -276,7 +211,7 @@ public class NewHeartRateActivityNew extends NewBaseActivity {
         this.infoV.setAlpha(0.5f);
         this.chartV.setAlpha(0.5f);
         removeAllFragments();
-        getSupportFragmentManager().beginTransaction().add((int) R.id.fragment_container_view, (Fragment) new NewSettingsFragment()).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container_view, new NewSettingsFragment()).commit();
     }
 
     public void showChart() {
@@ -286,7 +221,7 @@ public class NewHeartRateActivityNew extends NewBaseActivity {
         this.infoV.setAlpha(0.5f);
         this.chartV.setAlpha(1.0f);
         removeAllFragments();
-        getSupportFragmentManager().beginTransaction().add((int) R.id.fragment_container_view, (Fragment) new NewChartFragment()).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container_view, new NewChartFragment()).commit();
     }
 
     public void onActivityResult(int i, int i2, Intent intent) {
@@ -304,7 +239,7 @@ public class NewHeartRateActivityNew extends NewBaseActivity {
         dialog.getWindow().setBackgroundDrawableResource(17170445);
         dialog.show();
         dialog.findViewById(R.id.bg).getLayoutParams().width = (int) (((double) NewUscreen.width) * 0.9d);
-        final RatingBar ratingBar = (RatingBar) dialog.findViewById(R.id.ratingBar);
+        final RatingBar ratingBar = dialog.findViewById(R.id.ratingBar);
         dialog.findViewById(R.id.rate).setEnabled(false);
         dialog.findViewById(R.id.rate).setAlpha(0.5f);
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
@@ -336,6 +271,7 @@ public class NewHeartRateActivityNew extends NewBaseActivity {
     }
 
     public void onBackPressed() {
+        AdmobAdsHelper.ShowFullAds(this);
         finish();
     }
 }

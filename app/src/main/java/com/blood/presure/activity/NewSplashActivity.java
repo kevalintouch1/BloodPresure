@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,13 +16,20 @@ import com.appizona.yehiahd.fastsave.BuildConfig;
 import com.appizona.yehiahd.fastsave.FastSave;
 import com.blood.presure.Utils.AppUtil;
 import com.blood.presure.Utils.NewLanguageUtils;
-import com.blood.presure.Utils.New_Helper;
 import com.blood.presure.Utils.NewFirstOpenUtils;
+import com.blood.presure.ads.Helper;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.appopen.AppOpenAd;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.remoteconfig.ConfigUpdate;
+import com.google.firebase.remoteconfig.ConfigUpdateListener;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigException;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -50,9 +58,26 @@ public class NewSplashActivity extends AppCompatActivity {
 
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        setContentView((int) R.layout.activity_splash);
+        setContentView(R.layout.activity_splash);
+
 
         if (AppUtil.isNetworkAvailable(this)) {
+            FirebaseRemoteConfig mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
+            FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
+                    .setMinimumFetchIntervalInSeconds(3600)
+                    .build();
+            mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
+            mFirebaseRemoteConfig.fetchAndActivate().addOnCompleteListener(this, new OnCompleteListener<Boolean>() {
+                @Override
+                public void onComplete(@NonNull Task<Boolean> task) {
+                    if (task.isSuccessful()) {
+                        Log.d("TAG", "Config params updated: " + mFirebaseRemoteConfig.getString("BASE"));
+                        FastSave.getInstance().saveString("BASEURL",mFirebaseRemoteConfig.getString("BASE"));
+                    } else {
+                        FastSave.getInstance().saveString("BASEURL","http://139.59.232.13/api/v1/applist/");
+                    }
+                }
+            });
             getdata();
         } else {
             new Handler().postDelayed(() -> {
@@ -64,7 +89,7 @@ public class NewSplashActivity extends AppCompatActivity {
     private void getdata() {
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
-        String getdata_url = "http://139.59.232.13/api/v1/applist/" + getPackageName();
+        String getdata_url = FastSave.getInstance().getString("BASEURL","http://139.59.232.13/api/v1/applist/") + getPackageName();
         client.get(getdata_url, params, new AsyncHttpResponseHandler() {
             @SuppressLint("SetTextI18n")
             @Override
@@ -138,13 +163,24 @@ public class NewSplashActivity extends AppCompatActivity {
                     FastSave.getInstance().saveBoolean("isFbInterstitial", isFbInterstitial);
                     FastSave.getInstance().saveBoolean("isFbRewarded", isFbRewarded);
                     FastSave.getInstance().saveBoolean("isFbNativeAdvanced", isFbNativeAdvanced);
+
                     FastSave.getInstance().saveString("fbBANNER", fbBanner);
                     FastSave.getInstance().saveString("fbINTER", fbInterstitial);
                     FastSave.getInstance().saveString("fbNATIVE", fbNativeAdvanced);
                     FastSave.getInstance().saveString("fbReward", fbRewarded);
 
                     if (isUpdate && appVersion > BuildConfig.VERSION_CODE) {
-                        New_Helper.New_open_Update_Dialog(NewSplashActivity.this);
+                        Helper.openUpdateDialog(NewSplashActivity.this, () -> {
+                            if (FastSave.getInstance().getBoolean("SHOWADS", false)) {
+                                if (FastSave.getInstance().getBoolean("isGoogleAppOpen", false)) {
+                                    New_loadApp_OpenAd();
+                                } else {
+                                    nextActivity();
+                                }
+                            } else {
+                                nextActivity();
+                            }
+                        });
                     } else {
                         if (FastSave.getInstance().getBoolean("SHOWADS", false)) {
                             if (FastSave.getInstance().getBoolean("isGoogleAppOpen", false)) {

@@ -28,9 +28,7 @@ public class NewArticlesAdapterThree extends RecyclerView.Adapter<RecyclerView.V
         void callback(Object obj);
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-
-        /* renamed from: bg */
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         View f10183bg;
         View parent;
         ImageView thumb;
@@ -39,8 +37,8 @@ public class NewArticlesAdapterThree extends RecyclerView.Adapter<RecyclerView.V
         public MyViewHolder(View view) {
             super(view);
             this.parent = view;
-            this.title = (TextView) view.findViewById(R.id.title);
-            this.thumb = (ImageView) view.findViewById(R.id.thumb);
+            this.title = view.findViewById(R.id.title);
+            this.thumb = view.findViewById(R.id.thumb);
             this.f10183bg = view.findViewById(R.id.bg);
         }
     }
@@ -65,13 +63,9 @@ public class NewArticlesAdapterThree extends RecyclerView.Adapter<RecyclerView.V
         final NewArticleModel newArticleModel = this.list.get(i);
         MyViewHolder myViewHolder = (MyViewHolder) viewHolder;
         myViewHolder.title.setText(newArticleModel.title.replace("qst", "?"));
-        RequestManager with = Glide.with((View) myViewHolder.thumb);
+        RequestManager with = Glide.with(myViewHolder.thumb);
         with.load("file:///android_asset/" + newArticleModel.thumb).into(myViewHolder.thumb);
-        myViewHolder.parent.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                NewArticlesAdapterThree.this.callback.callback(newArticleModel);
-            }
-        });
+        myViewHolder.parent.setOnClickListener(view -> NewArticlesAdapterThree.this.callback.callback(newArticleModel));
     }
 
     public int getItemCount() {

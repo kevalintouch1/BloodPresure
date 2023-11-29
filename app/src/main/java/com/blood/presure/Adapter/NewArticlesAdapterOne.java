@@ -20,7 +20,7 @@ import java.util.List;
 public class NewArticlesAdapterOne extends RecyclerView.Adapter<NewArticlesAdapterOne.MyViewHolder> {
 
     public simpleCallback callback;
-    private List<NewArticleModel> list;
+    private final List<NewArticleModel> list;
 
     public interface simpleCallback {
         void callback(Object obj);
@@ -43,7 +43,7 @@ public class NewArticlesAdapterOne extends RecyclerView.Adapter<NewArticlesAdapt
     public void onBindViewHolder(MyViewHolder myViewHolder, int i) {
         final NewArticleModel newArticleModel = this.list.get(i);
         myViewHolder.title.setText(newArticleModel.title);
-        RequestManager with = Glide.with((View) myViewHolder.thumb);
+        RequestManager with = Glide.with(myViewHolder.thumb);
         with.load("file:///android_asset/" + newArticleModel.thumb).into(myViewHolder.thumb);
         myViewHolder.parent.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -59,8 +59,6 @@ public class NewArticlesAdapterOne extends RecyclerView.Adapter<NewArticlesAdapt
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-
-
         View f10182bg;
         View parent;
         ImageView thumb;
@@ -69,8 +67,8 @@ public class NewArticlesAdapterOne extends RecyclerView.Adapter<NewArticlesAdapt
         public MyViewHolder(View view) {
             super(view);
             this.parent = view;
-            this.title = (TextView) view.findViewById(R.id.title);
-            this.thumb = (ImageView) view.findViewById(R.id.thumb);
+            this.title = view.findViewById(R.id.title);
+            this.thumb = view.findViewById(R.id.thumb);
             this.f10182bg = view.findViewById(R.id.bg);
         }
     }

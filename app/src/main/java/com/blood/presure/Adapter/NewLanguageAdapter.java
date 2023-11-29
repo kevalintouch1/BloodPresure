@@ -28,8 +28,8 @@ public class NewLanguageAdapter extends RecyclerView.Adapter<NewLanguageAdapter.
         public MyViewHolder(View view) {
             super(view);
             this.parent = view;
-            this.title = (TextView) view.findViewById(R.id.title);
-            this.flag = (ImageView) view.findViewById(R.id.flag);
+            this.title = view.findViewById(R.id.title);
+            this.flag = view.findViewById(R.id.flag);
         }
     }
 
@@ -51,11 +51,7 @@ public class NewLanguageAdapter extends RecyclerView.Adapter<NewLanguageAdapter.
         final NewLanguageModel newLanguageModel = this.list.get(i);
         myViewHolder.title.setText(newLanguageModel.name);
         myViewHolder.flag.setImageResource(newLanguageModel.flag);
-        myViewHolder.parent.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                NewLanguageAdapter.this.callback.callback(newLanguageModel);
-            }
-        });
+        myViewHolder.parent.setOnClickListener(view -> NewLanguageAdapter.this.callback.callback(newLanguageModel));
     }
 
     public int getItemCount() {

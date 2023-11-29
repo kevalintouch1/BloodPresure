@@ -1,5 +1,9 @@
 package com.blood.presure.activity;
 
+
+
+import static com.blood.presure.ads.AdmobAdsHelper.ShowFullAds;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
@@ -12,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.appizona.yehiahd.fastsave.FastSave;
+import com.blood.presure.ads.AdmobAdsHelper;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
@@ -19,50 +24,25 @@ import com.blood.presure.R;
 
 public class NewResultHeartActivity extends NewBaseActivity implements View.OnClickListener {
     private ImageView imgBack;
-    private LinearLayout lnBanner;
     private TextView tvRecheck;
-    private TextView tvResultNumber;
     private TextView tvSave;
 
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        setContentView((int) R.layout.activity_result_heart);
+        setContentView(R.layout.activity_result_heart);
         initViews();
         initEvent();
-
-        LinearLayout adContainer = (LinearLayout) findViewById(R.id.adView);
-        AdView adView = new AdView(this);
-        adView.setAdUnitId(FastSave.getInstance().getString("BANNER", ""));
-        adContainer.addView(adView);
-        AdSize adSize = getAdSize(this);
-        adView.setAdSize(adSize);
-        adView.loadAd(new AdRequest.Builder().build());
+        new AdmobAdsHelper(this).bannerAds(this, findViewById(R.id.adView));
+        AdmobAdsHelper.LoadAdMobInterstitialAd(this);
     }
-
-    private AdSize getAdSize(Activity mActivity) {
-
-
-        Display display = mActivity.getWindowManager().getDefaultDisplay();
-        DisplayMetrics outMetrics = new DisplayMetrics();
-        display.getMetrics(outMetrics);
-
-        float widthPixels = outMetrics.widthPixels;
-        float density = outMetrics.density;
-
-        int adWidth = (int) (widthPixels / density);
-        return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(mActivity, adWidth);
-    }
-
 
     private void initViews() {
-        this.imgBack = (ImageView) findViewById(R.id.img_back);
-        this.tvResultNumber = (TextView) findViewById(R.id.tv_result_number);
-        this.tvRecheck = (TextView) findViewById(R.id.tv_recheck);
-        this.tvSave = (TextView) findViewById(R.id.tv_save);
-//        this.lnBanner = (LinearLayout) findViewById(R.id.ln_banner);
-//        BannerInApp.getInstance().showBanner(this, this.lnBanner, "ca-app-pub-4227016782733744/1441583023");
+        this.imgBack = findViewById(R.id.img_back);
+        TextView tvResultNumber = findViewById(R.id.tv_result_number);
+        this.tvRecheck = findViewById(R.id.tv_recheck);
+        this.tvSave = findViewById(R.id.tv_save);
         if (getIntent() != null) {
-            this.tvResultNumber.setText(getIntent().getStringExtra("name_result"));
+            tvResultNumber.setText(getIntent().getStringExtra("name_result"));
         }
     }
 
@@ -75,11 +55,17 @@ public class NewResultHeartActivity extends NewBaseActivity implements View.OnCl
     @SuppressLint("WrongConstant")
     public void onClick(View view) {
         if (view == this.imgBack) {
-            NewResultHeartActivity.this.finish();
+            onBackPressed();
         } else if (view == this.tvSave) {
-            NewResultHeartActivity.this.finish();
+            onBackPressed();
         } else if (view == this.tvRecheck) {
             Toast.makeText(this, "Coming Soon!", 0).show();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        ShowFullAds(this);
+        finish();
     }
 }

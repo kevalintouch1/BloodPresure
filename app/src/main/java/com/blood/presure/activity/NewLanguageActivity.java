@@ -1,32 +1,34 @@
 package com.blood.presure.activity;
 
+
+
+import static com.blood.presure.ads.AdmobAdsHelper.ShowFullAds;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.blood.presure.Adapter.NewArticlesAdapterOne;
-import com.blood.presure.Measurement.DownloadCommon;
 import com.blood.presure.Adapter.NewLanguageAdapter;
+import com.blood.presure.Measurement.DownloadCommon;
 import com.blood.presure.Model.NewLanguageModel;
-import com.blood.presure.Utils.NewSaveLanguageUtils;
 import com.blood.presure.R;
+import com.blood.presure.Utils.NewSaveLanguageUtils;
+import com.blood.presure.ads.AdmobAdsHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class NewLanguageActivity extends NewBaseActivity {
-    private List<NewLanguageModel> newLanguageModels = new ArrayList();
-    private ImageView imgBack;
-    private RecyclerView recyclerView;
+    private final List<NewLanguageModel> newLanguageModels = new ArrayList();
 
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        setContentView((int) R.layout.activity_languages);
+        setContentView(R.layout.activity_languages);
         this.newLanguageModels.add(new NewLanguageModel("English", "en", R.drawable.en));
         this.newLanguageModels.add(new NewLanguageModel("Français", "fr", R.drawable.fr));
         this.newLanguageModels.add(new NewLanguageModel("Arabic", "ar", R.drawable.ar));
@@ -35,11 +37,10 @@ public class NewLanguageActivity extends NewBaseActivity {
         this.newLanguageModels.add(new NewLanguageModel("Russian", "ru", R.drawable.ru));
         this.newLanguageModels.add(new NewLanguageModel("Portuguese", "pt", R.drawable.pr));
         this.newLanguageModels.add(new NewLanguageModel("German", DownloadCommon.DOWNLOAD_REPORT_DOWNLOAD_ERROR, R.drawable.de));
-        this.imgBack = (ImageView) findViewById(R.id.img_back_language);
-        RecyclerView recyclerView2 = (RecyclerView) findViewById(R.id.recyclerView);
-        this.recyclerView = recyclerView2;
+        ImageView imgBack = findViewById(R.id.img_back_language);
+        RecyclerView recyclerView2 = findViewById(R.id.recyclerView);
         recyclerView2.setLayoutManager(new LinearLayoutManager(this));
-        this.recyclerView.setAdapter(new NewLanguageAdapter(this.newLanguageModels, new NewArticlesAdapterOne.simpleCallback() {
+        recyclerView2.setAdapter(new NewLanguageAdapter(this.newLanguageModels, new NewArticlesAdapterOne.simpleCallback() {
             public void callback(Object obj) {
                 NewLanguageModel newLanguageModel = (NewLanguageModel) obj;
                 NewSaveLanguageUtils.saveLanguage("lang", "1", NewLanguageActivity.this);
@@ -50,17 +51,19 @@ public class NewLanguageActivity extends NewBaseActivity {
                 } else {
                     NewLanguageActivity.this.startActivity(new Intent(NewLanguageActivity.this, NewSplashActivity.class));
                 }
+                ShowFullAds(NewLanguageActivity.this);
                 NewLanguageActivity.this.finish();
             }
         }, this));
-        this.imgBack.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                NewLanguageActivity.this.finish();
-            }
-        });
+
+        imgBack.setOnClickListener(view -> onBackPressed());
+
+        new AdmobAdsHelper(this).bannerAds(this, findViewById(R.id.adView));
+        AdmobAdsHelper.LoadAdMobInterstitialAd(this);
     }
 
     public void onBackPressed() {
-        super.onBackPressed();
+        ShowFullAds(this);
+        finish();
     }
 }

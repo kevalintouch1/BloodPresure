@@ -1,5 +1,9 @@
 package com.blood.presure.Fragment;
 
+import static com.blood.presure.ads.AdmobAdsHelper.LoadAdMobInterstitialAd;
+import static com.blood.presure.ads.AdmobAdsHelper.ShowFullAds;
+
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,6 +25,7 @@ import com.blood.presure.R;
 import com.blood.presure.activity.NewAddRecordActivityNew;
 import com.blood.presure.activity.NewAllRecordsActivityNew;
 import com.blood.presure.activity.NewSplashActivity;
+import com.blood.presure.ads.AdmobAdsHelper;
 import com.blood.presure.chart.NewCustomBarChartRender;
 import com.blood.presure.chart.NewrecordPressure;
 import com.github.mikephil.charting.charts.BarChart;
@@ -39,7 +45,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NewTracker2Fragment extends Fragment {
-    private BarChart chart;
     private TextView dia;
     private View noData;
     private View parent;
@@ -51,38 +56,31 @@ public class NewTracker2Fragment extends Fragment {
         return layoutInflater.inflate(R.layout.fragment_tracker_blood, viewGroup, false);
     }
 
-    public void onViewCreated(View view, Bundle bundle) {
+    public void onViewCreated(@NonNull View view, Bundle bundle) {
         super.onViewCreated(view, bundle);
         this.parent = view;
-        this.recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
-        this.sys = (TextView) this.parent.findViewById(R.id.sys);
-        this.dia = (TextView) this.parent.findViewById(R.id.dia);
-        this.pulse = (TextView) this.parent.findViewById(R.id.pulse);
+        this.recyclerView = view.findViewById(R.id.recyclerView);
+        this.sys = this.parent.findViewById(R.id.sys);
+        this.dia = this.parent.findViewById(R.id.dia);
+        this.pulse = this.parent.findViewById(R.id.pulse);
         this.noData = this.parent.findViewById(R.id.noData);
         this.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         updateStats();
-        this.parent.findViewById(R.id.addRecord2).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                NewTracker2Fragment.this.addRecord2Clicked();
-            }
-        });
-        this.parent.findViewById(R.id.addRecord).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                NewTracker2Fragment.this.addRecord2Clicked();
-            }
-        });
-        this.parent.findViewById(R.id.img_mode).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                @SuppressLint("UnsafeOptInUsageError") Intent intent = new Intent(NewTracker2Fragment.this.getActivity(), NewSplashActivity.class);
-                intent.putExtra("Change_Language", true);
-                intent.addFlags(67108864);
-                NewTracker2Fragment.this.startActivity(intent);
-            }
+        this.parent.findViewById(R.id.addRecord2).setOnClickListener(view1 -> NewTracker2Fragment.this.addRecord2Clicked());
+        this.parent.findViewById(R.id.addRecord).setOnClickListener(view12 -> NewTracker2Fragment.this.addRecord2Clicked());
+        this.parent.findViewById(R.id.img_mode).setOnClickListener(view13 -> {
+            @SuppressLint("UnsafeOptInUsageError")
+            Intent intent = new Intent(NewTracker2Fragment.this.getActivity(), NewSplashActivity.class);
+            intent.putExtra("Change_Language", true);
+            intent.addFlags(67108864);
+            NewTracker2Fragment.this.startActivity(intent);
+            ShowFullAds(requireActivity());
         });
     }
 
     public void addRecord2Clicked() {
         NewTracker2Fragment.this.startActivity(new Intent(NewTracker2Fragment.this.getContext(), NewAddRecordActivityNew.class));
+        ShowFullAds(requireActivity());
     }
 
     private void showList(List<NewrecordPressure> list) {
@@ -90,19 +88,19 @@ public class NewTracker2Fragment extends Fragment {
             public void callback(Object obj) {
                 if (obj == null) {
                     NewTracker2Fragment.this.startActivity(new Intent(NewTracker2Fragment.this.getActivity(), NewAllRecordsActivityNew.class));
+                    ShowFullAds(requireActivity());
                     return;
                 }
                 NewAddRecordActivityNew.edit = (NewrecordPressure) obj;
                 NewTracker2Fragment.this.startActivity(new Intent(NewTracker2Fragment.this.getActivity(), NewAddRecordActivityNew.class));
-
+                ShowFullAds(requireActivity());
             }
         }, getActivity()));
     }
 
     private void updateStats() {
         if (NewrecordPressure.loadRecords().size() == 0) {
-            this.noData.setVisibility(0);
-            this.parent.findViewById(R.id.addRecord).setVisibility(4);
+            this.noData.setVisibility(View.GONE);
             fillDummyData();
             showList(getDummyData());
             this.sys.setText("100");
@@ -110,8 +108,7 @@ public class NewTracker2Fragment extends Fragment {
             this.pulse.setText("83");
             return;
         }
-        this.noData.setVisibility(8);
-        this.parent.findViewById(R.id.addRecord).setVisibility(0);
+        this.noData.setVisibility(View.GONE);
         List<NewrecordPressure> loadRecords = NewrecordPressure.loadRecords();
         NewrecordPressure.invertSort();
         showChart(loadRecords);
@@ -123,7 +120,7 @@ public class NewTracker2Fragment extends Fragment {
             }
         }
         if (arrayList.size() == 3) {
-            arrayList.add((Object) null);
+            arrayList.add(null);
         }
         showList(arrayList);
         if (arrayList.size() > 0) {
@@ -152,8 +149,7 @@ public class NewTracker2Fragment extends Fragment {
     public void showChart(List<NewrecordPressure> list) {
         ArrayList arrayList = new ArrayList();
         arrayList.addAll(list);
-        BarChart barChart = (BarChart) this.parent.findViewById(R.id.chart1);
-        this.chart = barChart;
+        BarChart barChart = this.parent.findViewById(R.id.chart1);
         barChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             public void onNothingSelected() {
             }
@@ -161,36 +157,36 @@ public class NewTracker2Fragment extends Fragment {
             public void onValueSelected(Entry entry, Highlight highlight) {
             }
         });
-        this.chart.getDescription().setEnabled(false);
-        this.chart.setMaxVisibleValueCount(10);
-        this.chart.setCameraDistance(10.0f);
-        this.chart.setPinchZoom(false);
-        this.chart.setDrawBarShadow(false);
-        this.chart.setDrawGridBackground(false);
-        this.chart.setFitBars(true);
-        this.chart.setDrawValueAboveBar(true);
-        this.chart.setVisibleXRange(1.0f, 2.0f);
-        this.chart.setExtraTopOffset(0.0f);
-        this.chart.setExtraBottomOffset(0.0f);
-        this.chart.setExtraLeftOffset(0.0f);
-        this.chart.setExtraRightOffset(0.0f);
-        XAxis xAxis = this.chart.getXAxis();
+        barChart.getDescription().setEnabled(false);
+        barChart.setMaxVisibleValueCount(10);
+        barChart.setCameraDistance(10.0f);
+        barChart.setPinchZoom(false);
+        barChart.setDrawBarShadow(false);
+        barChart.setDrawGridBackground(false);
+        barChart.setFitBars(true);
+        barChart.setDrawValueAboveBar(true);
+        barChart.setVisibleXRange(1.0f, 2.0f);
+        barChart.setExtraTopOffset(0.0f);
+        barChart.setExtraBottomOffset(0.0f);
+        barChart.setExtraLeftOffset(0.0f);
+        barChart.setExtraRightOffset(0.0f);
+        XAxis xAxis = barChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setDrawGridLines(false);
         xAxis.setTextColor(ContextCompat.getColor(getActivity(), R.color.accentColor));
-        newDayAxisValueFormatter dayAxisValueFormatter = new newDayAxisValueFormatter(this.chart);
+        newDayAxisValueFormatter dayAxisValueFormatter = new newDayAxisValueFormatter(barChart);
         xAxis.setGranularity(1.0f);
         xAxis.setLabelCount(7);
         xAxis.setValueFormatter(dayAxisValueFormatter);
         xAxis.setDrawAxisLine(false);
         dayAxisValueFormatter.setDate(arrayList);
-        this.chart.getAxisLeft().setTextColor(ContextCompat.getColor(getActivity(), R.color.accentColor));
-        this.chart.getAxisRight().setTextColor(ContextCompat.getColor(getActivity(), R.color.transparent));
-        this.chart.getAxisLeft().setDrawGridLines(false);
-        this.chart.getAxisRight().setDrawAxisLine(false);
-        this.chart.getAxisLeft().setDrawAxisLine(false);
-        this.chart.animateY(ServiceStarter.ERROR_UNKNOWN);
-        Legend legend = this.chart.getLegend();
+        barChart.getAxisLeft().setTextColor(ContextCompat.getColor(getActivity(), R.color.accentColor));
+        barChart.getAxisRight().setTextColor(ContextCompat.getColor(getActivity(), R.color.transparent));
+        barChart.getAxisLeft().setDrawGridLines(false);
+        barChart.getAxisRight().setDrawAxisLine(false);
+        barChart.getAxisLeft().setDrawAxisLine(false);
+        barChart.animateY(ServiceStarter.ERROR_UNKNOWN);
+        Legend legend = barChart.getLegend();
         legend.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
         legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
         legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);
@@ -200,7 +196,7 @@ public class NewTracker2Fragment extends Fragment {
         legend.setFormSize(9.0f);
         legend.setTextSize(9.0f);
         legend.setXEntrySpace(2.0f);
-        this.chart.getLegend().setEnabled(true);
+        barChart.getLegend().setEnabled(true);
         ArrayList arrayList2 = new ArrayList();
         ArrayList arrayList3 = new ArrayList();
         for (int i = 0; i < arrayList.size(); i++) {
@@ -218,18 +214,24 @@ public class NewTracker2Fragment extends Fragment {
         barDataSet2.setBarBorderWidth(5.0f);
         barDataSet2.setColors(ColorTemplate.createColors(new int[]{ContextCompat.getColor(getActivity(), R.color.accentColor2)}));
         barDataSet2.setDrawValues(true);
-        BarChart barChart2 = this.chart;
-        NewCustomBarChartRender newCustomBarChartRender = new NewCustomBarChartRender(barChart2, barChart2.getAnimator(), this.chart.getViewPortHandler());
+        BarChart barChart2 = barChart;
+        NewCustomBarChartRender newCustomBarChartRender = new NewCustomBarChartRender(barChart2, barChart2.getAnimator(), barChart.getViewPortHandler());
         newCustomBarChartRender.setRadius(20);
-        this.chart.setRenderer(newCustomBarChartRender);
+        barChart.setRenderer(newCustomBarChartRender);
         ArrayList arrayList4 = new ArrayList();
         arrayList4.add(barDataSet);
         arrayList4.add(barDataSet2);
         BarData barData = new BarData((List<IBarDataSet>) arrayList4);
         barData.setValueTextColor(-1);
-        this.chart.setData(barData);
-        this.chart.setVisibleXRangeMaximum(10.0f);
-        this.chart.setVisibleXRangeMaximum(10.0f);
-        this.chart.invalidate();
+        barChart.setData(barData);
+        barChart.setVisibleXRangeMaximum(10.0f);
+        barChart.setVisibleXRangeMaximum(10.0f);
+        barChart.invalidate();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        LoadAdMobInterstitialAd(requireActivity());
     }
 }

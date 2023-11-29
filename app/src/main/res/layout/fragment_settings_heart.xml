@@ -24,7 +24,7 @@
                     android:id="@+id/textView"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_65sdp"
-                    android:background="#14274E"
+                    android:background="@color/primary_light"
                     android:gravity="center"
                     android:layout_marginBottom="@dimen/_4sdp"
                     android:text="@string/settings"

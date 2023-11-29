@@ -40,8 +40,10 @@ import com.blood.presure.R;
 import com.blood.presure.Utils.NewSaveLanguageUtils;
 import com.blood.presure.Utils.NewUscreen;
 import com.blood.presure.activity.NewHeartRateActivityNew;
+import com.blood.presure.activity.NewHomeActivity;
 import com.blood.presure.activity.NewResultActivity;
 import com.blood.presure.activity.NewResultHeartActivity;
+import com.blood.presure.ads.AdmobAdsHelper;
 import com.blood.presure.anaylzer.OutputAnalyzerNew;
 import com.blood.presure.chart.NewCameraService;
 import com.blood.presure.chart.NewChartView;
@@ -57,7 +59,7 @@ import java.util.Locale;
 
 @UnstableApi
 public class NewMeasureFragment2 extends Fragment {
-    private static int RESULT_CAMERA = 123;
+    private static final int RESULT_CAMERA = 123;
     boolean _sound = true;
     boolean _vibrate = true;
 
@@ -81,7 +83,7 @@ public class NewMeasureFragment2 extends Fragment {
     boolean isShowing = false;
 
     public boolean justShared = false;
-    private Handler mainHandler = new Handler(Looper.getMainLooper()) {
+    private final Handler mainHandler = new Handler(Looper.getMainLooper()) {
         public void handleMessage(Message message) {
             super.handleMessage(message);
             if (message.what == 1) {
@@ -94,6 +96,7 @@ public class NewMeasureFragment2 extends Fragment {
                     Intent intent = new Intent(NewHeartRateActivityNew.getInstance(), NewResultHeartActivity.class);
                     intent.putExtra("name_result", message.obj.toString());
                     NewHeartRateActivityNew.getInstance().startActivity(intent);
+                    AdmobAdsHelper.ShowFullAds(requireActivity());
                 }
             }
             if (message.what == 3) {
@@ -149,8 +152,6 @@ public class NewMeasureFragment2 extends Fragment {
 
     public TextView state;
     private View tapToMeasureHolder;
-    private TextView tvExport;
-    private TextView tvStart;
     private Vibrator f10187v;
     public ImageView vibrate;
 
@@ -176,10 +177,11 @@ public class NewMeasureFragment2 extends Fragment {
         if (i != 0) {
             NewRecordModel newRecordModel = new NewRecordModel(i, System.currentTimeMillis());
             newRecordModel.state = i2;
-            String json = new Gson().toJson((Object) newRecordModel);
+            String json = new Gson().toJson(newRecordModel);
             Intent intent = new Intent(getActivity(), NewResultActivity.class);
             intent.putExtra("record", json);
             startActivityForResult(intent, 1);
+            AdmobAdsHelper.ShowFullAds(requireActivity());
             return;
         }
         showDialogTuto();
@@ -187,7 +189,7 @@ public class NewMeasureFragment2 extends Fragment {
 
     public void showStateDialog(final int i) {
         final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(getContext(), R.style.BottomSheetDialog);
-        bottomSheetDialog.setContentView((int) R.layout.state_dialog);
+        bottomSheetDialog.setContentView(R.layout.state_dialog);
         bottomSheetDialog.show();
         bottomSheetDialog.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -243,20 +245,20 @@ public class NewMeasureFragment2 extends Fragment {
         super.onViewCreated(view, bundle);
         this.parent = view;
         this.f10187v = (Vibrator) getActivity().getSystemService("vibrator");
-        this.beat = (ImageView) this.parent.findViewById(R.id.beat);
-        NewcirclesView circlesview = (NewcirclesView) this.parent.findViewById(R.id.circles2);
+        this.beat = this.parent.findViewById(R.id.beat);
+        NewcirclesView circlesview = this.parent.findViewById(R.id.circles2);
         this.circles2 = circlesview;
         circlesview.autoSpawn = false;
-        this.cameraTextureView = (TextureView) this.parent.findViewById(R.id.textureView2);
-        this.graphTextureView = (NewChartView) this.parent.findViewById(R.id.graphTextureView);
-        this.vibrate = (ImageView) this.parent.findViewById(R.id.vibrate);
-        this.sound = (ImageView) this.parent.findViewById(R.id.sound);
-        this.progressTv = (TextView) this.parent.findViewById(R.id.progress);
-        this.average = (TextView) this.parent.findViewById(R.id.average);
-        this.max = (TextView) this.parent.findViewById(R.id.max);
-        this.min = (TextView) this.parent.findViewById(R.id.min);
-        this.tvStart = (TextView) this.parent.findViewById(R.id.textView);
-        this.tvExport = (TextView) this.parent.findViewById(R.id.tv_export);
+        this.cameraTextureView = this.parent.findViewById(R.id.textureView2);
+        this.graphTextureView = this.parent.findViewById(R.id.graphTextureView);
+        this.vibrate = this.parent.findViewById(R.id.vibrate);
+        this.sound = this.parent.findViewById(R.id.sound);
+        this.progressTv = this.parent.findViewById(R.id.progress);
+        this.average = this.parent.findViewById(R.id.average);
+        this.max = this.parent.findViewById(R.id.max);
+        this.min = this.parent.findViewById(R.id.min);
+        TextView tvStart = this.parent.findViewById(R.id.textView);
+        TextView tvExport = this.parent.findViewById(R.id.tv_export);
         if (NewSaveLanguageUtils.LoadPref("vibrate", getActivity()) == 0) {
             this.vibrate.setAlpha(1.0f);
         } else {
@@ -300,19 +302,14 @@ public class NewMeasureFragment2 extends Fragment {
         });
         this.tapToMeasureHolder = this.parent.findViewById(R.id.tapToMeasureHolder);
         this.measuringHolder = this.parent.findViewById(R.id.measuringHolder);
-        this.bpm = (TextView) this.parent.findViewById(R.id.currentbpm);
+        this.bpm = this.parent.findViewById(R.id.currentbpm);
         this.tapToMeasureHolder.setVisibility(0);
         this.measuringHolder.setVisibility(8);
-        ImageView imageView2 = (ImageView) this.parent.findViewById(R.id.start);
+        ImageView imageView2 = this.parent.findViewById(R.id.start);
         this.imgStart = imageView2;
         imageView2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 if (NewMeasureFragment2.this.checkPermission()) {
-//                    if (!FastSave.getInstance().getBoolean(NewEUGeneralHelper.GOOGLE_PLAY_STORE_USER_KEY, false)) {
-//
-//                        AdAdmob adAdmob = new AdAdmob( getActivity());
-//                        adAdmob.FullscreenAd_Counter(getActivity());
-//                    }
                     NewMeasureFragment2.this.startMeasuring();
                     return;
                 }
@@ -329,7 +326,7 @@ public class NewMeasureFragment2 extends Fragment {
                 NewMeasureFragment2.this.funcStopMess();
             }
         });
-        this.tvStart.setOnClickListener(new View.OnClickListener() {
+        tvStart.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 if (NewMeasureFragment2.this.checkPermission()) {
                     NewMeasureFragment2.this.startMeasuring();
@@ -346,7 +343,7 @@ public class NewMeasureFragment2 extends Fragment {
         });
         mainHeartAnimation();
         updateData();
-        this.tvExport.setOnClickListener(new View.OnClickListener() {
+        tvExport.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 NewMeasureFragment2 newMeasureFragment2 = NewMeasureFragment2.this;
                 Intent access$600 = newMeasureFragment2.getTextIntent((String) ((TextView) newMeasureFragment2.parent.findViewById(R.id.textView4)).getText());
@@ -361,7 +358,7 @@ public class NewMeasureFragment2 extends Fragment {
     public Intent getTextIntent(String str) {
         Intent intent = new Intent("android.intent.action.SEND");
         intent.setType("text/plain");
-        intent.putExtra("android.intent.extra.SUBJECT", String.format(getString(R.string.output_header_template), new Object[]{new SimpleDateFormat(getString(R.string.dateFormat), Locale.getDefault()).format(new Date())}));
+        intent.putExtra("android.intent.extra.SUBJECT", String.format(getString(R.string.output_header_template), new SimpleDateFormat(getString(R.string.dateFormat), Locale.getDefault()).format(new Date())));
         intent.putExtra("android.intent.extra.TEXT", str);
         return intent;
     }
@@ -369,13 +366,13 @@ public class NewMeasureFragment2 extends Fragment {
 
     public void initHeart(View view) {
         this.newCameraService = new NewCameraService(getActivity(), this.mainHandler);
-        TextureView textureView = (TextureView) view.findViewById(R.id.textureView2);
+        TextureView textureView = view.findViewById(R.id.textureView2);
         SurfaceTexture surfaceTexture = textureView.getSurfaceTexture();
         if (surfaceTexture != null && !this.justShared) {
             Surface surface = new Surface(surfaceTexture);
             Log.e("TAG", "initHeart: "+surfaceTexture );
 
-            this.outputAnalyzerNew = new OutputAnalyzerNew(getActivity(), (TextureView) view.findViewById(R.id.tv_graph), this.mainHandler);
+            this.outputAnalyzerNew = new OutputAnalyzerNew(getActivity(), view.findViewById(R.id.tv_graph), this.mainHandler);
             this.newCameraService.start(surface);
             this.outputAnalyzerNew.measurePulse(textureView, this.newCameraService);
         }
@@ -427,9 +424,9 @@ public class NewMeasureFragment2 extends Fragment {
             return;
         }
         if (Build.VERSION.SDK_INT >= 26) {
-            this.f10187v.vibrate(VibrationEffect.createOneShot((long) i, -1));
+            this.f10187v.vibrate(VibrationEffect.createOneShot(i, -1));
         } else {
-            this.f10187v.vibrate((long) i);
+            this.f10187v.vibrate(i);
         }
     }
 
@@ -449,7 +446,7 @@ public class NewMeasureFragment2 extends Fragment {
             public void onAnimationEnd(Animator animator) {
                 super.onAnimationEnd(animator);
                 NewMeasureFragment2.this.beat.clearAnimation();
-                NewMeasureFragment2.this.beat.animate().scaleX(1.0f).scaleY(1.0f).setDuration(300).setListener((Animator.AnimatorListener) null).start();
+                NewMeasureFragment2.this.beat.animate().scaleX(1.0f).scaleY(1.0f).setDuration(300).setListener(null).start();
             }
         }).start();
     }
@@ -473,7 +470,7 @@ public class NewMeasureFragment2 extends Fragment {
         if (outputAnalyzerNew2 != null) {
             outputAnalyzerNew2.stop();
         }
-        this.outputAnalyzerNew = new OutputAnalyzerNew(getActivity(), (TextureView) this.parent.findViewById(R.id.tv_graph), this.mainHandler);
+        this.outputAnalyzerNew = new OutputAnalyzerNew(getActivity(), this.parent.findViewById(R.id.tv_graph), this.mainHandler);
     }
 
     public void showDialogTuto() {
@@ -496,7 +493,7 @@ public class NewMeasureFragment2 extends Fragment {
                 NewMeasureFragment2.this.isShowing = false;
             }
         });
-        tutoAnimation((ImageView) dialog.findViewById(R.id.hand), dialog.findViewById(R.id.animationHolder));
+        tutoAnimation(dialog.findViewById(R.id.hand), dialog.findViewById(R.id.animationHolder));
     }
 
     public boolean checkPermission() {
@@ -566,5 +563,11 @@ public class NewMeasureFragment2 extends Fragment {
         this.measuringHolder.setVisibility(8);
         this.tapToMeasureHolder.setVisibility(0);
         updateData();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        AdmobAdsHelper.LoadAdMobInterstitialAd(requireActivity());
     }
 }

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:aapt="http://schemas.android.com/aapt"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -17,7 +16,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/_65sdp"
-            android:background="#14274E"
+            android:background="@color/primary_light"
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -28,17 +27,16 @@
                 android:layout_marginStart="@dimen/_14sdp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:padding="@dimen/_2sdp"
-                android:src="@drawable/ic_back"
-                />
+                android:src="@drawable/ic_back" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginRight="@dimen/_34sdp"
                 android:layout_weight="1"
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center"
-                android:layout_marginRight="@dimen/_34sdp"
-                android:layout_marginTop="@dimen/_4sdp"
                 android:text="@string/your_info"
                 android:textColor="@color/white"
                 android:textSize="20sp"
@@ -59,7 +57,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/rounded10"
-            android:backgroundTint="#14274E"
+            android:backgroundTint="@color/primary_light"
             android:orientation="vertical">
 
             <LinearLayout
@@ -244,19 +242,33 @@
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:background="@drawable/rounded10"
-            android:backgroundTint="#14274E"
+            android:backgroundTint="@color/primary_light"
             android:fontFamily="@font/poppins_medium"
             android:gravity="center"
             android:text="@string/next"
             android:textColor="@color/white" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/adView"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_alignParentBottom="true"/>
+        android:layout_height="55dp"
+        android:layout_marginBottom="2dp"
+        android:orientation="vertical">
 
-<!--    <include layout="@layout/layout_native_ad_fan" />-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:background="@color/gray2"
+            android:gravity="center"
+            android:text="ADs Space"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:id="@+id/adView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical" />
+    </RelativeLayout>
 </LinearLayout>

@@ -29,11 +29,11 @@
         android:roundIcon="@drawable/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.HeartBeatFlash">
+
         <activity
             android:name="com.blood.presure.activity.NewSplashActivity"
             android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/style_main">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -47,66 +47,53 @@
         <activity
             android:name="com.blood.presure.activity.NewHomeActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/style_red" />
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.blood.presure.activity.NewHowtoUseActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/style_main" />
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.blood.presure.activity.NewHeartRateActivityNew"
             android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/style_heart_rate" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.blood.presure.activity.NewResultHeartActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/style_main" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.blood.presure.activity.NewWebViewActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/style_main" />
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.blood.presure.activity.NewLanguageActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/style_main" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.blood.presure.activity.NewInfoActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/style_main" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.blood.presure.activity.NewAddRecordActivityNew"
-            android:screenOrientation="portrait"
-            android:theme="@style/style_main" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.blood.presure.activity.NewAllRecordsActivityNew"
-            android:screenOrientation="portrait"
-            android:theme="@style/style_main" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.blood.presure.activity.NewBloodPressureActivityNew"
-            android:screenOrientation="portrait"
-            android:theme="@style/style_red" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.blood.presure.activity.NewBaseActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/style_blue" />
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.blood.presure.activity.NewLanguageFirstActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/style_main1" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.blood.presure.activity.NewOnBoardActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/style_main" />
+            android:screenOrientation="portrait"/>
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3928990988343664~5909499588" />
+            android:value="@string/addid" />
     </application>
 
 </manifest>

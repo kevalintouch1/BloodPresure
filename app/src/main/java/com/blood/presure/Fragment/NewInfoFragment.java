@@ -12,27 +12,23 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.appizona.yehiahd.fastsave.FastSave;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.RequestManager;
 import com.blood.presure.Adapter.NewArticlesAdapterOne;
 import com.blood.presure.Measurement.MBridgeConstans;
 import com.blood.presure.Model.NewArticleModel;
 import com.blood.presure.Model.NewCatModel;
-
-import com.blood.presure.Utils.AdAdmob;
-import com.blood.presure.Utils.NewEUGeneralHelper;
+import com.blood.presure.R;
 import com.blood.presure.Utils.NewSaveLanguageUtils;
 import com.blood.presure.activity.NewWebViewActivity;
+import com.blood.presure.ads.AdmobAdsHelper;
 import com.blood.presure.helper.KnowledgeHelpers;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestManager;
 import com.google.gson.Gson;
-import com.blood.presure.R;
 
 import java.util.Collections;
 import java.util.List;
 
 public class NewInfoFragment extends Fragment {
-    private NewArticlesAdapterOne NewArticlesAdapterOne;
 
     public simpleCallback callback;
     private RecyclerView recyclerView1;
@@ -49,8 +45,8 @@ public class NewInfoFragment extends Fragment {
     }
 
     private void initViews(View view) {
-        this.recyclerView1 = (RecyclerView) view.findViewById(R.id.articles1);
-        this.recyclerView2 = (RecyclerView) view.findViewById(R.id.articles2);
+        this.recyclerView1 = view.findViewById(R.id.articles1);
+        this.recyclerView2 = view.findViewById(R.id.articles2);
         this.recyclerView1.setLayoutManager(new LinearLayoutManager(getContext(), 0, false));
         this.recyclerView2.setLayoutManager(new LinearLayoutManager(getContext()));
         List<NewCatModel> loadPagesParents = KnowledgeHelpers.loadPagesParents(NewSaveLanguageUtils.getLanguage("languageTitle", getActivity()));
@@ -61,15 +57,16 @@ public class NewInfoFragment extends Fragment {
     }
 
     private void showArticlesTop(NewCatModel newCatModel) {
-        this.NewArticlesAdapterOne = new NewArticlesAdapterOne(newCatModel.pages, new NewArticlesAdapterOne.simpleCallback() {
+        com.blood.presure.Adapter.NewArticlesAdapterOne newArticlesAdapterOne = new NewArticlesAdapterOne(newCatModel.pages, new NewArticlesAdapterOne.simpleCallback() {
             public void callback(final Object obj) {
                 Intent intent = new Intent(NewInfoFragment.this.getActivity(), NewWebViewActivity.class);
-                intent.putExtra("article", new Gson().toJson((Object) (NewArticleModel) obj));
+                intent.putExtra("article", new Gson().toJson(obj));
                 NewInfoFragment.this.startActivity(intent);
+                AdmobAdsHelper.ShowFullAds(requireActivity());
             }
         });
         this.recyclerView1.setAlpha(0.0f);
-        this.recyclerView1.setAdapter(this.NewArticlesAdapterOne);
+        this.recyclerView1.setAdapter(newArticlesAdapterOne);
         this.recyclerView1.animate().alpha(1.0f).setDuration(200);
     }
 
@@ -87,7 +84,7 @@ public class NewInfoFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        new AdAdmob(getActivity()).LoadAdMobInterstitialAd(requireActivity());
+        AdmobAdsHelper.LoadAdMobInterstitialAd(requireActivity());
     }
 
     public void openWebBM(final String str, final String str2, final String str3) {
@@ -96,7 +93,7 @@ public class NewInfoFragment extends Fragment {
         intent.putExtra("thumb", str2);
         intent.putExtra("title", str);
         NewInfoFragment.this.startActivity(intent);
-        new AdAdmob(requireActivity()).ShowAds(requireActivity());
+        AdmobAdsHelper.ShowFullAds(requireActivity());
     }
 
     public class CatAdapter extends RecyclerView.Adapter<CatAdapter.MyViewHolder> {
@@ -118,7 +115,7 @@ public class NewInfoFragment extends Fragment {
             final NewArticleModel newArticleModel = this.list.get(i);
             final NewCatModel newCatModel = this.mListNewCatModel.get(i);
             myViewHolder.title.setText(newCatModel.title.replace("qst", "?"));
-            RequestManager with = Glide.with((View) myViewHolder.thumb);
+            RequestManager with = Glide.with(myViewHolder.thumb);
             with.load("file:///android_asset/" + newArticleModel.thumb).into(myViewHolder.thumb);
             myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
@@ -142,8 +139,8 @@ public class NewInfoFragment extends Fragment {
 
             public MyViewHolder(View view) {
                 super(view);
-                this.title = (TextView) view.findViewById(R.id.title);
-                this.thumb = (ImageView) view.findViewById(R.id.thumb);
+                this.title = view.findViewById(R.id.title);
+                this.thumb = view.findViewById(R.id.thumb);
                 this.f10186bg = view.findViewById(R.id.bg);
             }
         }

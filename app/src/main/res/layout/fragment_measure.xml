@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:aapt="http://schemas.android.com/aapt"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/layout"
     android:layout_width="match_parent"
@@ -19,7 +18,7 @@
             android:layout_marginStart="30dp"
             android:layout_marginEnd="10dp"
             android:background="@drawable/bg_messure_top"
-            android:backgroundTint="#14274E"
+            android:backgroundTint="@color/primary_light"
             android:orientation="horizontal"
             android:paddingLeft="4dp"
             android:paddingTop="4dp"
@@ -32,9 +31,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
                 android:layout_weight="1"
                 android:padding="10dp"
-                android:layout_marginLeft="@dimen/_10sdp"
                 android:text="@string/measure"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="@color/white"
@@ -295,10 +294,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="10dp"
                 android:layout_marginLeft="@dimen/_14sdp"
                 android:layout_marginTop="@dimen/_6sdp"
+                android:layout_weight="1"
+                android:padding="10dp"
                 android:text="Measuring"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="@color/white"
@@ -317,6 +316,7 @@
             android:id="@+id/center"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline7"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
@@ -330,8 +330,7 @@
             app:wheel_reached_width="10dp"
             app:wheel_scroll_only_one_circle="true"
             app:wheel_unreached_color="#fbe2e8"
-            app:wheel_unreached_width="10dp"
-            android:orientation="horizontal" />
+            app:wheel_unreached_width="10dp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
@@ -505,8 +504,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_marginTop="@dimen/_6sdp"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="@+id/topBar2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">

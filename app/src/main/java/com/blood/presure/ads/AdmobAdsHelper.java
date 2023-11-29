@@ -10,9 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -32,11 +30,9 @@ import com.google.android.gms.ads.nativead.MediaView;
 import com.google.android.gms.ads.nativead.NativeAd;
 import com.google.android.gms.ads.nativead.NativeAdView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class AdmobAdsHelper {
     final Context context;
+
     public AdmobAdsHelper(Context context) {
         this.context = context;
     }
@@ -63,6 +59,7 @@ public class AdmobAdsHelper {
                 @Override
                 public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                     super.onAdFailedToLoad(loadAdError);
+                    Log.e("TAG", "onAdFailedToLoad: " + loadAdError.getMessage());
                     frameLayout.setVisibility(View.GONE);
                 }
             });
@@ -71,37 +68,41 @@ public class AdmobAdsHelper {
     }
 
     public void rectAds(Context mContext, ViewGroup frameLayout) {
-        String admonnative = FastSave.getInstance().getString("BANNER", "");
+        if (FastSave.getInstance().getBoolean("isGoogleBanner", false)) {
+            String admonnative = FastSave.getInstance().getString("BANNER", "");
 
-        Bundle bundle = new Bundle();
-        bundle.putString("npa", "1");
-        AdRequest banner_adRequest = new AdRequest.Builder().build();
-        AdView adView = new AdView(mContext);
-        adView.setAdSize(AdSize.MEDIUM_RECTANGLE);
-        adView.setAdUnitId(admonnative);
-        adView.loadAd(banner_adRequest);
-        frameLayout.addView(adView);
+            Bundle bundle = new Bundle();
+            bundle.putString("npa", "1");
+            AdRequest banner_adRequest = new AdRequest.Builder().build();
+            AdView adView = new AdView(mContext);
+            adView.setAdSize(AdSize.MEDIUM_RECTANGLE);
+            adView.setAdUnitId(admonnative);
+            adView.loadAd(banner_adRequest);
+            frameLayout.addView(adView);
+        }
     }
 
     public void loadgoogleNative(Context context, ViewGroup viewGroup) {
-        AdLoader.Builder builder = new AdLoader.Builder(context, FastSave.getInstance().getString("NATIVE", ""))
-                .forNativeAd(nativeAd -> {
-                    NativeAdView adView = (NativeAdView) ((Activity) context).getLayoutInflater()
-                            .inflate(R.layout.native_ad_unified, null);
-                    populateUnifiedNativeAdView(nativeAd, adView);
-                    viewGroup.removeAllViews();
-                    viewGroup.addView(adView);
-                });
+        if (FastSave.getInstance().getBoolean("isGoogleNativeAdvanced", false)) {
+            AdLoader.Builder builder = new AdLoader.Builder(context, FastSave.getInstance().getString("NATIVE", ""))
+                    .forNativeAd(nativeAd -> {
+                        NativeAdView adView = (NativeAdView) ((Activity) context).getLayoutInflater()
+                                .inflate(R.layout.native_ad_unified, null);
+                        populateUnifiedNativeAdView(nativeAd, adView);
+                        viewGroup.removeAllViews();
+                        viewGroup.addView(adView);
+                    });
 
-        AdLoader adLoader = builder.withAdListener(new AdListener() {
-            @Override
-            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                Log.e("TAG", "onAdFailedToLoad: " + loadAdError.getMessage());
-                super.onAdFailedToLoad(loadAdError);
-            }
-        }).build();
+            AdLoader adLoader = builder.withAdListener(new AdListener() {
+                @Override
+                public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                    Log.e("TAG", "onAdFailedToLoad: " + loadAdError.getMessage());
+                    super.onAdFailedToLoad(loadAdError);
+                }
+            }).build();
 
-        adLoader.loadAd(new AdRequest.Builder().build());
+            adLoader.loadAd(new AdRequest.Builder().build());
+        }
     }
 
     private void populateUnifiedNativeAdView(NativeAd nativeAd, NativeAdView adView) {
@@ -212,32 +213,33 @@ public class AdmobAdsHelper {
     static AdRequest interstitial_adRequest;
 
     public static void LoadAdMobInterstitialAd(Context context) {
-        // TODO Auto-generated method stub
-        try {
-            Bundle non_personalize_bundle = new Bundle();
-            non_personalize_bundle.putString("npa", "1");
+        if (FastSave.getInstance().getBoolean("isGoogleInterstitial", false)) {
+            try {
+                Bundle non_personalize_bundle = new Bundle();
+                non_personalize_bundle.putString("npa", "1");
 
-            interstitial_adRequest = new AdRequest.Builder().build();
+                interstitial_adRequest = new AdRequest.Builder().build();
 
-            InterstitialAd.load(context, FastSave.getInstance().getString("INTER", ""), interstitial_adRequest, new InterstitialAdLoadCallback() {
-                @Override
-                public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
-                    ad_mob_interstitial = interstitialAd;
-                }
+                InterstitialAd.load(context, FastSave.getInstance().getString("INTER", ""), interstitial_adRequest, new InterstitialAdLoadCallback() {
+                    @Override
+                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                        ad_mob_interstitial = interstitialAd;
+                    }
 
-                @Override
-                public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                    ad_mob_interstitial = null;
-                    LoadAdMobInterstitialAd(context);
-                }
-            });
-        } catch (Exception e) {
-            // TODO: handle exception
-            e.printStackTrace();
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        ad_mob_interstitial = null;
+                        LoadAdMobInterstitialAd(context);
+                    }
+                });
+            } catch (Exception e) {
+                // TODO: handle exception
+                e.printStackTrace();
+            }
         }
     }
 
-    public static void ShowAdsOpenFile(final Context context) {
+    public static void ShowFullAds(final Context context) {
         InterstitialAd interstitialAd = ad_mob_interstitial;
         if (interstitialAd != null) {
             interstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
@@ -258,7 +260,7 @@ public class AdmobAdsHelper {
         }
         int i = showAdsNumberCount + 1;
         showAdsNumberCount = i;
-        if (FastSave.getInstance().getInt("CLICKS", 1) < i) {
+        if (FastSave.getInstance().getInt("CLICKS", 0) < i) {
             if (ad_mob_interstitial != null) {
                 ad_mob_interstitial.show((Activity) context);
             }
@@ -267,28 +269,4 @@ public class AdmobAdsHelper {
         }
     }
 
-    public static void ShowAds(final Context context) {
-        InterstitialAd interstitialAd = ad_mob_interstitial;
-        if (interstitialAd != null) {
-            interstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
-                @Override
-                public void onAdFailedToShowFullScreenContent(com.google.android.gms.ads.AdError adError) {
-                    LoadAdMobInterstitialAd(context);
-                }
-
-                @Override
-                public void onAdDismissedFullScreenContent() {
-                }
-
-                @Override
-                public void onAdShowedFullScreenContent() {
-                    ad_mob_interstitial = null;
-                }
-            });
-        }
-        if (ad_mob_interstitial != null) {
-            ad_mob_interstitial.show((Activity) context);
-        }
-        Helper.is_show_open_ad = false;
-    }
 }

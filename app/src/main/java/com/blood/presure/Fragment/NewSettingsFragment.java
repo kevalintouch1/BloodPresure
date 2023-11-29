@@ -19,6 +19,7 @@ import com.blood.presure.Utils.MeUtils;
 import com.blood.presure.activity.NewHeartRateActivityNew;
 import com.blood.presure.activity.NewLanguageFirstActivity;
 import com.blood.presure.activity.NewSplashActivity;
+import com.blood.presure.ads.AdmobAdsHelper;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 
@@ -28,7 +29,6 @@ public class NewSettingsFragment extends Fragment {
     private TextView gender;
     
     public TextView height;
-    private LinearLayout lnMode;
     private View parent;
     
     public TextView weight;
@@ -40,11 +40,11 @@ public class NewSettingsFragment extends Fragment {
     public void onViewCreated(View view, Bundle bundle) {
         super.onViewCreated(view, bundle);
         this.parent = view;
-        this.age = (TextView) view.findViewById(R.id.ageT);
-        this.weight = (TextView) this.parent.findViewById(R.id.weightT);
-        this.height = (TextView) this.parent.findViewById(R.id.heightT);
-        this.gender = (TextView) this.parent.findViewById(R.id.genderT);
-        this.lnMode = (LinearLayout) this.parent.findViewById(R.id.ln_mode);
+        this.age = view.findViewById(R.id.ageT);
+        this.weight = this.parent.findViewById(R.id.weightT);
+        this.height = this.parent.findViewById(R.id.heightT);
+        this.gender = this.parent.findViewById(R.id.genderT);
+        LinearLayout lnMode = this.parent.findViewById(R.id.ln_mode);
         TextView textView = this.age;
         textView.setText(MeUtils.getAge() + "");
         TextView textView2 = this.weight;
@@ -54,10 +54,12 @@ public class NewSettingsFragment extends Fragment {
         this.gender.setText(MeUtils.getGenderText());
         this.parent.findViewById(R.id.lang).setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                @SuppressLint("UnsafeOptInUsageError") Intent intent = new Intent(NewSettingsFragment.this.getActivity(), NewLanguageFirstActivity.class);
+                @SuppressLint("UnsafeOptInUsageError")
+                Intent intent = new Intent(NewSettingsFragment.this.getActivity(), NewLanguageFirstActivity.class);
                 intent.putExtra("Change_Language", true);
                 intent.addFlags(67108864);
                 NewSettingsFragment.this.startActivity(intent);
+                AdmobAdsHelper.ShowFullAds(requireActivity());
             }
         });
         this.parent.findViewById(R.id.rateUs).setOnClickListener(new View.OnClickListener() {
@@ -94,15 +96,17 @@ public class NewSettingsFragment extends Fragment {
                 intent.setAction("android.intent.action.SEND");
                 intent.putExtra("android.intent.extra.TEXT", NewSettingsFragment.this.getString(R.string.app_name) + " app => https://play.google.com/store/apps/details?id=" + NewSettingsFragment.this.getActivity().getPackageName());
                 intent.setType("text/plain");
-                NewSettingsFragment.this.startActivity(Intent.createChooser(intent, (CharSequence) null));
+                NewSettingsFragment.this.startActivity(Intent.createChooser(intent, null));
             }
         });
-        this.lnMode.setOnClickListener(new View.OnClickListener() {
+        lnMode.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                @SuppressLint("UnsafeOptInUsageError") Intent intent = new Intent(NewSettingsFragment.this.getActivity(), NewSplashActivity.class);
+                @SuppressLint("UnsafeOptInUsageError")
+                Intent intent = new Intent(NewSettingsFragment.this.getActivity(), NewSplashActivity.class);
                 intent.putExtra("Change_Language", true);
                 intent.addFlags(67108864);
                 NewSettingsFragment.this.startActivity(intent);
+                AdmobAdsHelper.ShowFullAds(requireActivity());
             }
         });
     }
@@ -127,9 +131,9 @@ public class NewSettingsFragment extends Fragment {
 
     public void showAgeDialog() {
         final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(getContext(), R.style.Theme_Material3_DayNight_BottomSheetDialog);
-        bottomSheetDialog.setContentView((int) R.layout.dialog_age_old);
+        bottomSheetDialog.setContentView(R.layout.dialog_age_old);
         bottomSheetDialog.show();
-        final NumberPicker numberPicker = (NumberPicker) bottomSheetDialog.findViewById(R.id.numberPicker);
+        final NumberPicker numberPicker = bottomSheetDialog.findViewById(R.id.numberPicker);
         numberPicker.setMaxValue(110);
         numberPicker.setMinValue(5);
         MeUtils.setDividerColor(numberPicker, ContextCompat.getColor(getContext(), R.color.light));
@@ -151,9 +155,9 @@ public class NewSettingsFragment extends Fragment {
 
     public void showHeightDialog() {
         final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(getContext(), R.style.Theme_Material3_DayNight_BottomSheetDialog);
-        bottomSheetDialog.setContentView((int) R.layout.dialog_height);
+        bottomSheetDialog.setContentView(R.layout.dialog_height);
         bottomSheetDialog.show();
-        final NumberPicker numberPicker = (NumberPicker) bottomSheetDialog.findViewById(R.id.numberPicker);
+        final NumberPicker numberPicker = bottomSheetDialog.findViewById(R.id.numberPicker);
         numberPicker.setMaxValue(ItemTouchHelper.Callback.DEFAULT_SWIPE_ANIMATION_DURATION);
         numberPicker.setMinValue(50);
         MeUtils.setDividerColor(numberPicker, ContextCompat.getColor(getContext(), R.color.light));
@@ -175,9 +179,9 @@ public class NewSettingsFragment extends Fragment {
 
     public void showWeightDialog() {
         final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(getContext(), R.style.Theme_Material3_DayNight_BottomSheetDialog);
-        bottomSheetDialog.setContentView((int) R.layout.weight_dialog);
+        bottomSheetDialog.setContentView(R.layout.weight_dialog);
         bottomSheetDialog.show();
-        final NumberPicker numberPicker = (NumberPicker) bottomSheetDialog.findViewById(R.id.numberPicker);
+        final NumberPicker numberPicker = bottomSheetDialog.findViewById(R.id.numberPicker);
         numberPicker.setMaxValue(200);
         numberPicker.setMinValue(15);
         MeUtils.setDividerColor(numberPicker, ContextCompat.getColor(getContext(), R.color.light));
@@ -195,5 +199,11 @@ public class NewSettingsFragment extends Fragment {
                 access$200.setText(numberPicker.getValue() + "");
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        AdmobAdsHelper.LoadAdMobInterstitialAd(requireActivity());
     }
 }

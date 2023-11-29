@@ -48,16 +48,10 @@ public class NewFirstLanguageAdapter extends RecyclerView.Adapter {
     private void bindView(RecyclerView.ViewHolder viewHolder, final int i) {
         ListFileViewHolder listFileViewHolder = (ListFileViewHolder) viewHolder;
         NewLanguageEntity newLanguageEntity = this.mLanguageEntities.get(i);
-        listFileViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                NewLanguageUtils.setPositionCountry(NewFirstLanguageAdapter.this.mContext, i);
-                if (NewLanguageUtils.getSelectedLanguage(NewFirstLanguageAdapter.this.mContext).getCode().equals(((NewLanguageEntity) NewFirstLanguageAdapter.this.mLanguageEntities.get(i)).getCode())) {
-                    NewFirstLanguageAdapter.this.mLanguageListener.onLanguageChanged((NewLanguageEntity) NewFirstLanguageAdapter.this.mLanguageEntities.get(i), false);
-                } else {
-                    NewFirstLanguageAdapter.this.mLanguageListener.onLanguageChanged((NewLanguageEntity) NewFirstLanguageAdapter.this.mLanguageEntities.get(i), true);
-                }
-                NewFirstLanguageAdapter.this.notifyDataSetChanged();
-            }
+        listFileViewHolder.itemView.setOnClickListener(view -> {
+            NewLanguageUtils.setPositionCountry(NewFirstLanguageAdapter.this.mContext, i);
+            NewFirstLanguageAdapter.this.mLanguageListener.onLanguageChanged(NewFirstLanguageAdapter.this.mLanguageEntities.get(i), !NewLanguageUtils.getSelectedLanguage(NewFirstLanguageAdapter.this.mContext).getCode().equals(NewFirstLanguageAdapter.this.mLanguageEntities.get(i).getCode()));
+            NewFirstLanguageAdapter.this.notifyDataSetChanged();
         });
         if (NewLanguageUtils.getPositionCountry(this.mContext) == i) {
             listFileViewHolder.clItem.setBackgroundResource(R.drawable.bg_language_selected_first);
@@ -84,10 +78,10 @@ public class NewFirstLanguageAdapter extends RecyclerView.Adapter {
 
         public ListFileViewHolder(View view) {
             super(view);
-            this.clItem = (ConstraintLayout) view.findViewById(R.id.cl_item_language);
-            this.ivTypeItemFile = (ImageView) view.findViewById(R.id.iv_type_item_file);
-            this.tvNameItemFile = (TextView) view.findViewById(R.id.tv_name_item_file);
-            this.iv_select = (ImageView) view.findViewById(R.id.iv_select);
+            this.clItem = view.findViewById(R.id.cl_item_language);
+            this.ivTypeItemFile = view.findViewById(R.id.iv_type_item_file);
+            this.tvNameItemFile = view.findViewById(R.id.tv_name_item_file);
+            this.iv_select = view.findViewById(R.id.iv_select);
         }
     }
 }

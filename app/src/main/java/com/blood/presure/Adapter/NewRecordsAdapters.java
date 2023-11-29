@@ -23,7 +23,7 @@ import java.util.List;
 public class NewRecordsAdapters extends RecyclerView.Adapter<NewRecordsAdapters.MyViewHolder> {
     
     public simpleCallback callback;
-    private Context context;
+    private final Context context;
     public List<NewrecordPressure> list;
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
@@ -38,12 +38,12 @@ public class NewRecordsAdapters extends RecyclerView.Adapter<NewRecordsAdapters.
         public MyViewHolder(View view) {
             super(view);
             this.parent = view;
-            this.level = (TextView) view.findViewById(R.id.level);
-            this.sys = (TextView) view.findViewById(R.id.sys);
-            this.dia = (TextView) view.findViewById(R.id.dia);
-            this.details = (TextView) view.findViewById(R.id.details);
+            this.level = view.findViewById(R.id.level);
+            this.sys = view.findViewById(R.id.sys);
+            this.dia = view.findViewById(R.id.dia);
+            this.details = view.findViewById(R.id.details);
             this.levelColor = view.findViewById(R.id.levelColor);
-            this.circleColor = (LinearLayout) view.findViewById(R.id.circleColor);
+            this.circleColor = view.findViewById(R.id.circleColor);
         }
     }
 
@@ -84,11 +84,7 @@ public class NewRecordsAdapters extends RecyclerView.Adapter<NewRecordsAdapters.
             ViewCompat.setBackgroundTintList(myViewHolder.circleColor, ColorStateList.valueOf(Color.parseColor(level.color)));
             ViewCompat.setBackgroundTintList(myViewHolder.levelColor, ColorStateList.valueOf(Color.parseColor(level.color)));
         }
-        myViewHolder.parent.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                callback.callback(recordpressure);
-            }
-        });
+        myViewHolder.parent.setOnClickListener(view -> callback.callback(recordpressure));
     }
 
     public int getItemCount() {

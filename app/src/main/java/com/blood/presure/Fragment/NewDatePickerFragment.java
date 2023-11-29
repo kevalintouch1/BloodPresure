@@ -16,7 +16,7 @@ public class NewDatePickerFragment extends DialogFragment implements DatePickerD
 
     private Calendar f10180c;
     private simpleCallback callback;
-    private Date date;
+    private final Date date;
 
     public NewDatePickerFragment(Date date2, simpleCallback simplecallback) {
         this.date = date2;

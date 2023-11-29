@@ -1,114 +1,71 @@
 package com.blood.presure.activity;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.view.Display;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.TextView;
+
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 
-import com.appizona.yehiahd.fastsave.FastSave;
-import com.blood.presure.Utils.NewSaveLanguageUtils;
-import com.blood.presure.Utils.MeUtils;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
-import com.google.android.gms.ads.AdView;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.blood.presure.R;
+import com.blood.presure.Utils.MeUtils;
+import com.blood.presure.Utils.NewSaveLanguageUtils;
+import com.blood.presure.ads.AdmobAdsHelper;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 
 public class NewInfoActivity extends NewBaseActivity {
-    
+
     public TextView age;
     private TextView gender;
-    
+
     public TextView height;
-    private ImageView imgBack;
-    private LinearLayout lnNative;
-    
+
     public TextView weight;
 
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        setContentView((int) R.layout.activity_info);
-        findViewById(R.id.next).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                NewInfoActivity.this.next();
-            }
-        });
-        this.imgBack = (ImageView) findViewById(R.id.img_back);
-        this.age = (TextView) findViewById(R.id.ageT);
-        this.weight = (TextView) findViewById(R.id.weightT);
-        this.height = (TextView) findViewById(R.id.heightT);
-        this.gender = (TextView) findViewById(R.id.genderT);
-        TextView textView = this.age;
-        textView.setText(MeUtils.getAge() + "");
-        TextView textView2 = this.weight;
-        textView2.setText(MeUtils.getWeight() + "");
-        TextView textView3 = this.height;
-        textView3.setText(MeUtils.getHeight() + "");
+        setContentView(R.layout.activity_info);
+        findViewById(R.id.next).setOnClickListener(view -> NewInfoActivity.this.next());
+        ImageView imgBack = findViewById(R.id.img_back);
+        this.age = findViewById(R.id.ageT);
+        this.weight = findViewById(R.id.weightT);
+        this.height = findViewById(R.id.heightT);
+        this.gender = findViewById(R.id.genderT);
+
+        this.age.setText(MeUtils.getAge() + "");
+        this.weight.setText(MeUtils.getWeight() + "");
+        this.height.setText(MeUtils.getHeight() + "");
         this.gender.setText(MeUtils.getGenderText());
-        findViewById(R.id.age).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                NewInfoActivity.this.showAgeDialog();
-            }
-        });
-        findViewById(R.id.height).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                NewInfoActivity.this.showHeightDialog();
-            }
-        });
-        findViewById(R.id.weight).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                NewInfoActivity.this.showWeightDialog();
-            }
-        });
-        findViewById(R.id.gender).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                NewInfoActivity.this.changeGender();
-            }
-        });
-        this.imgBack.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                NewInfoActivity.this.finish();
-            }
-        });
 
-        LinearLayout adContainer = (LinearLayout) findViewById(R.id.adView);
-        AdView adView = new AdView(this);
-        adView.setAdUnitId(FastSave.getInstance().getString("BANNER", ""));
-        adContainer.addView(adView);
-        AdSize adSize = getAdSize(this);
-        adView.setAdSize(adSize);
-        adView.loadAd(new AdRequest.Builder().build());
-
+        new AdmobAdsHelper(this).bannerAds(this, findViewById(R.id.adView));
+        findViewById(R.id.age).setOnClickListener(view -> NewInfoActivity.this.showAgeDialog());
+        findViewById(R.id.height).setOnClickListener(view -> NewInfoActivity.this.showHeightDialog());
+        findViewById(R.id.weight).setOnClickListener(view -> NewInfoActivity.this.showWeightDialog());
+        findViewById(R.id.gender).setOnClickListener(view -> NewInfoActivity.this.changeGender());
+        imgBack.setOnClickListener(view -> onBackPressed());
+        AdmobAdsHelper.LoadAdMobInterstitialAd(this);
     }
 
-    private AdSize getAdSize(Activity mActivity) {
-
-
-        Display display = mActivity.getWindowManager().getDefaultDisplay();
-        DisplayMetrics outMetrics = new DisplayMetrics();
-        display.getMetrics(outMetrics);
-
-        float widthPixels = outMetrics.widthPixels;
-        float density = outMetrics.density;
-
-        int adWidth = (int) (widthPixels / density);
-        return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(mActivity, adWidth);
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 
+    @Override
+    public void onBackPressed() {
+        AdmobAdsHelper.ShowFullAds(this);
+        finish();
+    }
 
     public void next() {
         NewSaveLanguageUtils.saveLanguage("me", "1", NewInfoActivity.this);
         NewInfoActivity.this.startActivity(new Intent(NewInfoActivity.this, NewHeartRateActivityNew.class));
+        AdmobAdsHelper.ShowFullAds(this);
         NewInfoActivity.this.finish();
     }
 
@@ -127,9 +84,9 @@ public class NewInfoActivity extends NewBaseActivity {
 
     public void showAgeDialog() {
         final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this, com.google.android.material.R.style.Theme_Material3_DayNight_BottomSheetDialog);
-        bottomSheetDialog.setContentView((int) R.layout.dialog_age_old);
+        bottomSheetDialog.setContentView(R.layout.dialog_age_old);
         bottomSheetDialog.show();
-        final NumberPicker numberPicker = (NumberPicker) bottomSheetDialog.findViewById(R.id.numberPicker);
+        final NumberPicker numberPicker = bottomSheetDialog.findViewById(R.id.numberPicker);
         numberPicker.setMaxValue(110);
         numberPicker.setMinValue(5);
         MeUtils.setDividerColor(numberPicker, ContextCompat.getColor(this, R.color.light));
@@ -152,10 +109,10 @@ public class NewInfoActivity extends NewBaseActivity {
     @SuppressLint("ResourceType")
     public void showHeightDialog() {
         final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this, com.google.android.material.R.style.Theme_Material3_DayNight_BottomSheetDialog);
-        bottomSheetDialog.setContentView((int) R.layout.dialog_height);
+        bottomSheetDialog.setContentView(R.layout.dialog_height);
         bottomSheetDialog.getWindow().setBackgroundDrawableResource(17170445);
         bottomSheetDialog.show();
-        final NumberPicker numberPicker = (NumberPicker) bottomSheetDialog.findViewById(R.id.numberPicker);
+        final NumberPicker numberPicker = bottomSheetDialog.findViewById(R.id.numberPicker);
         numberPicker.setMaxValue(ItemTouchHelper.Callback.DEFAULT_SWIPE_ANIMATION_DURATION);
         numberPicker.setMinValue(50);
         MeUtils.setDividerColor(numberPicker, ContextCompat.getColor(this, R.color.light));
@@ -177,9 +134,9 @@ public class NewInfoActivity extends NewBaseActivity {
 
     public void showWeightDialog() {
         final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this, com.google.android.material.R.style.Theme_Material3_DayNight_BottomSheetDialog);
-        bottomSheetDialog.setContentView((int) R.layout.weight_dialog);
+        bottomSheetDialog.setContentView(R.layout.weight_dialog);
         bottomSheetDialog.show();
-        final NumberPicker numberPicker = (NumberPicker) bottomSheetDialog.findViewById(R.id.numberPicker);
+        final NumberPicker numberPicker = bottomSheetDialog.findViewById(R.id.numberPicker);
         numberPicker.setMaxValue(200);
         numberPicker.setMinValue(15);
         MeUtils.setDividerColor(numberPicker, ContextCompat.getColor(this, R.color.light));

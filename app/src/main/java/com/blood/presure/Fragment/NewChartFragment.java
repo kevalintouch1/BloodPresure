@@ -42,7 +42,6 @@ import java.util.List;
 public class NewChartFragment extends Fragment {
     private List<NewRecordModel> newRecordModels;
     private TextView bpm;
-    private BarChart chart;
     private TextView date;
     private TextView gender;
     private View indicator;
@@ -50,7 +49,6 @@ public class NewChartFragment extends Fragment {
     private View parent;
     private TextView result;
     private TextView state;
-    private ViewPager viewPager;
 
     private void updateStats() {
         List<NewRecordModel> list = this.newRecordModels;
@@ -97,8 +95,7 @@ public class NewChartFragment extends Fragment {
             arrayList.addAll(getDummyData());
             this.noData.setVisibility(0);
         }
-        BarChart barChart = (BarChart) this.parent.findViewById(R.id.chart1);
-        this.chart = barChart;
+        BarChart barChart = this.parent.findViewById(R.id.chart1);
         barChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
@@ -109,32 +106,32 @@ public class NewChartFragment extends Fragment {
             }
 
         });
-        this.chart.getDescription().setEnabled(false);
-        this.chart.setMaxVisibleValueCount(10);
-        this.chart.setCameraDistance(10.0f);
-        this.chart.setPinchZoom(false);
-        this.chart.setDrawBarShadow(false);
-        this.chart.setDrawGridBackground(false);
-        this.chart.setFitBars(false);
-        this.chart.setVisibleXRange(5.0f, 9.0f);
-        this.chart.setExtraTopOffset(-30.0f);
-        this.chart.setExtraBottomOffset(10.0f);
-        this.chart.setExtraLeftOffset(15.0f);
-        this.chart.setExtraRightOffset(15.0f);
-        XAxis xAxis = this.chart.getXAxis();
+        barChart.getDescription().setEnabled(false);
+        barChart.setMaxVisibleValueCount(10);
+        barChart.setCameraDistance(10.0f);
+        barChart.setPinchZoom(false);
+        barChart.setDrawBarShadow(false);
+        barChart.setDrawGridBackground(false);
+        barChart.setFitBars(false);
+        barChart.setVisibleXRange(5.0f, 9.0f);
+        barChart.setExtraTopOffset(-30.0f);
+        barChart.setExtraBottomOffset(10.0f);
+        barChart.setExtraLeftOffset(15.0f);
+        barChart.setExtraRightOffset(15.0f);
+        XAxis xAxis = barChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setDrawGridLines(false);
         xAxis.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
-        DayAxisValueFormatter dayAxisValueFormatter = new DayAxisValueFormatter(this.chart);
+        DayAxisValueFormatter dayAxisValueFormatter = new DayAxisValueFormatter(barChart);
         xAxis.setGranularity(1.0f);
         xAxis.setLabelCount(7);
         xAxis.setValueFormatter(dayAxisValueFormatter);
         dayAxisValueFormatter.setDate(arrayList);
-        this.chart.getAxisLeft().setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
-        this.chart.getAxisRight().setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
-        this.chart.getAxisLeft().setDrawGridLines(false);
-        this.chart.animateY(300);
-        Legend legend = this.chart.getLegend();
+        barChart.getAxisLeft().setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
+        barChart.getAxisRight().setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
+        barChart.getAxisLeft().setDrawGridLines(false);
+        barChart.animateY(300);
+        Legend legend = barChart.getLegend();
         legend.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
         legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
         legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);
@@ -144,7 +141,7 @@ public class NewChartFragment extends Fragment {
         legend.setFormSize(9.0f);
         legend.setTextSize(11.0f);
         legend.setXEntrySpace(4.0f);
-        this.chart.getLegend().setEnabled(true);
+        barChart.getLegend().setEnabled(true);
         ArrayList arrayList2 = new ArrayList();
         for (int i = 0; i < arrayList.size(); i++) {
             arrayList2.add(new BarEntry((float) (i * 2), (float) ((NewRecordModel) arrayList.get(i)).beat));
@@ -154,16 +151,16 @@ public class NewChartFragment extends Fragment {
         barDataSet.setBarBorderWidth(5.0f);
         barDataSet.setColors(ColorTemplate.createColors(new int[]{ContextCompat.getColor(getActivity(), R.color.primary_light)}));
         barDataSet.setDrawValues(true);
-        BarChart barChart2 = this.chart;
-        NewCustomBarChartRender newCustomBarChartRender = new NewCustomBarChartRender(barChart2, barChart2.getAnimator(), this.chart.getViewPortHandler());
+        BarChart barChart2 = barChart;
+        NewCustomBarChartRender newCustomBarChartRender = new NewCustomBarChartRender(barChart2, barChart2.getAnimator(), barChart.getViewPortHandler());
         newCustomBarChartRender.setRadius(20);
-        this.chart.setRenderer(newCustomBarChartRender);
+        barChart.setRenderer(newCustomBarChartRender);
         ArrayList arrayList3 = new ArrayList();
         arrayList3.add(barDataSet);
-        this.chart.setData(new BarData((List<IBarDataSet>) arrayList3));
-        this.chart.setVisibleXRangeMaximum(15.0f);
-        this.chart.setVisibleXRangeMaximum(15.0f);
-        this.chart.invalidate();
+        barChart.setData(new BarData((List<IBarDataSet>) arrayList3));
+        barChart.setVisibleXRangeMaximum(15.0f);
+        barChart.setVisibleXRangeMaximum(15.0f);
+        barChart.invalidate();
     }
 
     public static NewChartFragment newInstance() {
@@ -182,26 +179,18 @@ public class NewChartFragment extends Fragment {
             this.newRecordModels = DataCenter.getRecords();
         }
         this.noData = this.parent.findViewById(R.id.noData);
-        this.viewPager = (ViewPager) this.parent.findViewById(R.id.viewPager);
+        ViewPager viewPager = this.parent.findViewById(R.id.viewPager);
         updateStats();
-        this.bpm = (TextView) view.findViewById(R.id.bpm);
-        this.result = (TextView) view.findViewById(R.id.result);
-        this.date = (TextView) view.findViewById(R.id.date);
-        this.state = (TextView) view.findViewById(R.id.state);
-        this.gender = (TextView) view.findViewById(R.id.gender);
+        this.bpm = view.findViewById(R.id.bpm);
+        this.result = view.findViewById(R.id.result);
+        this.date = view.findViewById(R.id.date);
+        this.state = view.findViewById(R.id.state);
+        this.gender = view.findViewById(R.id.gender);
         this.indicator = view.findViewById(R.id.indicator);
         view.findViewById(R.id.arrow).setVisibility(4);
         showLastRecord();
-        this.parent.findViewById(R.id.add).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                NewHeartRateActivityNew.getInstance().showMeasure();
-            }
-        });
-        this.parent.findViewById(R.id.add2).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                NewHeartRateActivityNew.getInstance().showMeasure();
-            }
-        });
+        this.parent.findViewById(R.id.add).setOnClickListener(view1 -> NewHeartRateActivityNew.getInstance().showMeasure());
+        this.parent.findViewById(R.id.add2).setOnClickListener(view12 -> NewHeartRateActivityNew.getInstance().showMeasure());
     }
 
     private void showLastRecord() {
@@ -209,8 +198,7 @@ public class NewChartFragment extends Fragment {
         if (list != null && list.size() != 0) {
             NewRecordModel newRecordModel = this.newRecordModels.get(0);
             this.result.setText(MeUtils.getHeartStateString(newRecordModel.beat, MeUtils.getAge(), newRecordModel.state));
-            TextView textView = this.bpm;
-            textView.setText(newRecordModel.beat + "");
+            this.bpm.setText(newRecordModel.beat + "");
             this.state.setText(newRecordModel.getStateText());
             TextView textView2 = this.gender;
             textView2.setText(newRecordModel.getGenderText() + " | " + newRecordModel.age);

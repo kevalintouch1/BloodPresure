@@ -1,15 +1,12 @@
 <resources>
-    <!-- Base application theme. -->
-
-    <style name="AppTheme">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorAccent">@color/primary_light</item>
         <item name="colorPrimary">@color/primary_light</item>
         <item name="colorPrimaryDark">@color/primary_light</item>
         <item name="android:textColorSecondary">@color/black</item>
-
     </style>
 
-    <style name="AppTheme.HeartBeatFlash">
+    <style name="AppTheme.HeartBeatFlash" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:statusBarColor">@color/bg</item>
         <item name="colorOnPrimary">@color/primaryDark</item>
         <item name="colorOnSecondary">@color/primaryAccent</item>
@@ -18,7 +15,6 @@
         <item name="colorSecondary">@color/primaryAccent</item>
         <item name="colorSecondaryVariant">@color/primaryAccent</item>
         <item name="android:textColorSecondary">@color/black</item>
-
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -28,39 +24,10 @@
         <item name="android:windowIsTranslucent">false</item>
         <item name="android:splitMotionEvents">false</item>
         <item name="android:windowEnableSplitTouch">false</item>
-
-    </style>
-
-    <style name="Base.Theme.BloodPresure" parent="Theme.AppCompat.DayNight.NoActionBar">
-
     </style>
 
     <style name="AlertDialog.AppCompat.NumberPicker">
         <item name="android:colorControlNormal">#14274E</item>
-    </style>
-
-    <style name="style_main" parent="Theme.AppCompat.DayNight.NoActionBar">
-        <item name="android:statusBarColor">#14274E</item>
-    </style>
-
-    <style name="style_main1" parent="Theme.AppCompat.DayNight.NoActionBar">
-        <item name="android:statusBarColor">#14274E</item>
-    </style>
-
-    <style name="style_blue" parent="Theme.AppCompat.DayNight.NoActionBar">
-        <item name="android:statusBarColor">#14274E</item>
-    </style>
-
-    <style name="style_heart_rate" parent="Theme.AppCompat.DayNight.NoActionBar">
-        <item name="android:statusBarColor">#14274E</item>
-    </style>
-
-    <style name="style_red" parent="Theme.AppCompat.DayNight.NoActionBar">
-        <item name="android:statusBarColor">#14274E</item>
-    </style>
-
-    <style name="style_vip" parent="Theme.AppCompat.DayNight.NoActionBar">
-        <item name="android:statusBarColor">#14274E</item>
     </style>
 
     <style name="BottomSheetDialog">
@@ -78,13 +45,13 @@
         <item name="bottomSheetStyle">@style/Widget.Design.BottomSheet.Modal</item>
     </style>
 
-    <style name="Theme.Design.Light"></style>
+    <style name="Theme.Design.Light"/>
 
-    <style name="Theme.Material3.Dark.BottomSheetDialog"></style>
+    <style name="Theme.Material3.Dark.BottomSheetDialog"/>
 
-    <style name="Theme.Material3.DayNight.BottomSheetDialog"></style>
+    <style name="Theme.Material3.DayNight.BottomSheetDialog"/>
 
-    <style name="Theme.Material3.Light.BottomSheetDialog"></style>
+    <style name="Theme.Material3.Light.BottomSheetDialog"/>
 
     <style name="Theme.MaterialComponents.BottomSheetDialog">
         <item name="android:windowBackground">@android:color/transparent</item>
@@ -94,7 +61,7 @@
         <item name="bottomSheetStyle">@style/Widget.MaterialComponents.BottomSheet.Modal</item>
     </style>
 
-    <style name="Theme.MaterialComponents.DayNight.BottomSheetDialog"></style>
+    <style name="Theme.MaterialComponents.DayNight.BottomSheetDialog"/>
 
     <style name="Theme.MaterialComponents.Light.BottomSheetDialog">
         <item name="android:windowBackground">@android:color/transparent</item>
@@ -104,7 +71,7 @@
         <item name="bottomSheetStyle">@style/Widget.MaterialComponents.BottomSheet.Modal</item>
     </style>
 
-    <style name="ThemeOverlay.Material3.BottomSheetDialog"></style>
+    <style name="ThemeOverlay.Material3.BottomSheetDialog"/>
 
     <style name="CustomDialog" parent="@android:style/Theme.Dialog">
         <item name="android:windowBackground">@android:color/transparent</item>
@@ -113,7 +80,7 @@
         <item name="android:windowMinWidthMinor">80%</item>
     </style>
 
-    <style name="ThemeOverlay.MaterialComponents.BottomSheetDialog"></style>
+    <style name="ThemeOverlay.MaterialComponents.BottomSheetDialog"/>
 
     <style name="AppTheme.Ads" parent="@style/Theme.AppCompat.Light">
         <item name="android:textSize">11sp</item>
@@ -128,5 +95,4 @@
         <item name="android:text">Ad</item>
     </style>
 
-    <style name="Theme.BloodPresure" parent="Base.Theme.BloodPresure" />
 </resources>

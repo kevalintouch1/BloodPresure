@@ -1,27 +1,23 @@
 package com.blood.presure.activity;
 
-import android.app.Activity;
+import static com.blood.presure.ads.AdmobAdsHelper.LoadAdMobInterstitialAd;
+import static com.blood.presure.ads.AdmobAdsHelper.ShowFullAds;
+
+
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.view.Display;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.appizona.yehiahd.fastsave.FastSave;
 import com.blood.presure.Fragment.NewDatePickerFragment;
 import com.blood.presure.Fragment.NewTimePickerFragment;
-import com.blood.presure.Interface.simpleCallback;
 import com.blood.presure.R;
 import com.blood.presure.Utils.NewbpLevel;
+import com.blood.presure.ads.AdmobAdsHelper;
 import com.blood.presure.chart.NewrecordPressure;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
-import com.google.android.gms.ads.AdView;
 import com.shawnlin.numberpicker.NumberPicker;
 
 import java.text.SimpleDateFormat;
@@ -44,7 +40,6 @@ public class NewAddRecordActivityNew extends NewBaseActivity {
     private NewbpLevel selectedLevel;
     private NumberPicker sys;
     private TextView time;
-    private TextView title;
 
     public void onDestroy() {
         super.onDestroy();
@@ -65,69 +60,37 @@ public class NewAddRecordActivityNew extends NewBaseActivity {
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(getColor(R.color.white));
-        setContentView((int) R.layout.new_add_record_activity);
-        findViewById(R.id.save).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                NewAddRecordActivityNew.this.save();
-            }
-        });
-        findViewById(R.id.close).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                NewAddRecordActivityNew.this.finish();
-            }
-        });
-        this.title = (TextView) findViewById(R.id.title);
-        this.date = (TextView) findViewById(R.id.date);
-        this.time = (TextView) findViewById(R.id.time);
-//        this.lnNativeBanner = (LinearLayout) findViewById(R.id.ln_banner);
-//        BannerInApp.getInstance().showBanner(this, this.lnNativeBanner, FirebaseQuery.getIdBannerGA(this));
+        setContentView(R.layout.new_add_record_activity);
+        findViewById(R.id.save).setOnClickListener(view -> NewAddRecordActivityNew.this.save());
+        findViewById(R.id.close).setOnClickListener(view -> NewAddRecordActivityNew.this.finish());
+        TextView title = findViewById(R.id.title);
+        this.date = findViewById(R.id.date);
+        this.time = findViewById(R.id.time);
         this.currentTimeDate = Calendar.getInstance().getTime();
         updateDateAndTime();
-        this.time.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                new NewTimePickerFragment(NewAddRecordActivityNew.this.currentTimeDate, new simpleCallback() {
-                    public void callback(Object obj) {
-                        Date unused = NewAddRecordActivityNew.this.currentTimeDate = (Date) obj;
-                        NewAddRecordActivityNew.this.updateDateAndTime();
-                    }
-                }).show(NewAddRecordActivityNew.this.getSupportFragmentManager(), "timePicker");
+        this.time.setOnClickListener(view -> new NewTimePickerFragment(NewAddRecordActivityNew.this.currentTimeDate, obj -> {
+            NewAddRecordActivityNew.this.currentTimeDate = (Date) obj;
+            NewAddRecordActivityNew.this.updateDateAndTime();
+        }).show(NewAddRecordActivityNew.this.getSupportFragmentManager(), "timePicker"));
+        this.date.setOnClickListener(view -> {
+            try {
+                new NewDatePickerFragment(NewAddRecordActivityNew.this.currentTimeDate, obj -> {
+                    NewAddRecordActivityNew.this.currentTimeDate = (Date) obj;
+                    NewAddRecordActivityNew.this.updateDateAndTime();
+                }).show(NewAddRecordActivityNew.this.getSupportFragmentManager(), "datePicker");
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
-        this.date.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                try {
-                    new NewDatePickerFragment(NewAddRecordActivityNew.this.currentTimeDate, new simpleCallback() {
-                        public void callback(Object obj) {
-                            Date unused = NewAddRecordActivityNew.this.currentTimeDate = (Date) obj;
-                            NewAddRecordActivityNew.this.updateDateAndTime();
-                        }
-                    }).show(NewAddRecordActivityNew.this.getSupportFragmentManager(), "datePicker");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-        this.Diastoliclevel = (TextView) findViewById(R.id.Diastoliclevel);
-        this.DiastoliclevelConseil = (TextView) findViewById(R.id.DiastoliclevelConseil);
-        this.DiastoliclevelDetails = (TextView) findViewById(R.id.DiastoliclevelDetails);
-        this.sys = (NumberPicker) findViewById(R.id.sys);
-        this.dia = (NumberPicker) findViewById(R.id.dia);
-        this.pulse = (NumberPicker) findViewById(R.id.pulse);
-        this.sys.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-            public void onValueChange(NumberPicker numberPicker, int i, int i2) {
-                NewAddRecordActivityNew.this.valueChanged();
-            }
-        });
-        this.dia.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-            public void onValueChange(NumberPicker numberPicker, int i, int i2) {
-                NewAddRecordActivityNew.this.valueChanged();
-            }
-        });
-        this.pulse.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-            public void onValueChange(NumberPicker numberPicker, int i, int i2) {
-                NewAddRecordActivityNew.this.valueChanged();
-            }
-        });
+        this.Diastoliclevel = findViewById(R.id.Diastoliclevel);
+        this.DiastoliclevelConseil = findViewById(R.id.DiastoliclevelConseil);
+        this.DiastoliclevelDetails = findViewById(R.id.DiastoliclevelDetails);
+        this.sys = findViewById(R.id.sys);
+        this.dia = findViewById(R.id.dia);
+        this.pulse = findViewById(R.id.pulse);
+        this.sys.setOnValueChangedListener((numberPicker, i, i2) -> NewAddRecordActivityNew.this.valueChanged());
+        this.dia.setOnValueChangedListener((numberPicker, i, i2) -> NewAddRecordActivityNew.this.valueChanged());
+        this.pulse.setOnValueChangedListener((numberPicker, i, i2) -> NewAddRecordActivityNew.this.valueChanged());
         List<NewbpLevel> list2 = NewbpLevel.getList(this);
         this.list = list2;
         this.selectedLevel = list2.get(1);
@@ -152,40 +115,18 @@ public class NewAddRecordActivityNew extends NewBaseActivity {
             this.selectedLevel = level;
             setupLavel(level);
             updateLevels();
-            this.title.setText(R.string.edit);
+            title.setText(R.string.edit);
             findViewById(R.id.delete).setVisibility(0);
         } else {
             findViewById(R.id.delete).setVisibility(8);
         }
-        findViewById(R.id.delete).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                NewrecordPressure.delete(NewAddRecordActivityNew.edit);
-                NewAddRecordActivityNew.this.finish();
-            }
+        findViewById(R.id.delete).setOnClickListener(view -> {
+            NewrecordPressure.delete(NewAddRecordActivityNew.edit);
+            NewAddRecordActivityNew.this.finish();
         });
 
-        LinearLayout adContainer = (LinearLayout) findViewById(R.id.adView);
-        AdView adView = new AdView(this);
-        adView.setAdUnitId(FastSave.getInstance().getString("BANNER", ""));
-        adContainer.addView(adView);
-        AdSize adSize = getAdSize(this);
-        adView.setAdSize(adSize);
-        adView.loadAd(new AdRequest.Builder().build());
-
-    }
-
-    private AdSize getAdSize(Activity mActivity) {
-
-
-        Display display = mActivity.getWindowManager().getDefaultDisplay();
-        DisplayMetrics outMetrics = new DisplayMetrics();
-        display.getMetrics(outMetrics);
-
-        float widthPixels = outMetrics.widthPixels;
-        float density = outMetrics.density;
-
-        int adWidth = (int) (widthPixels / density);
-        return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(mActivity, adWidth);
+        new AdmobAdsHelper(this).bannerAds(this, findViewById(R.id.adView));
+        LoadAdMobInterstitialAd(this);
     }
 
 
@@ -205,6 +146,7 @@ public class NewAddRecordActivityNew extends NewBaseActivity {
             NewrecordPressure.AddRecord(new NewrecordPressure(value3, value, value2, time2));
             NewrecordPressure.save();
         }
+        ShowFullAds(this);
         finish();
     }
 

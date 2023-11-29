@@ -24,7 +24,6 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class OutputAnalyzer {
-    private Activity activity;
     NewCameraService newCameraService;
     List<Float> chartStore;
     @SuppressLint("RestrictedApi")
@@ -46,7 +45,6 @@ public class OutputAnalyzer {
     private CopyOnWriteArrayList<Long> valleys = new CopyOnWriteArrayList<>();
 
     public OutputAnalyzer(Activity activity2, NewChartView newChartView, Handler handler, stateReport statereport) {
-        this.activity = activity2;
         this.reporter = statereport;
         this.graphTextureView = newChartView;
         this.mainHandler = handler;
@@ -57,14 +55,14 @@ public class OutputAnalyzer {
         if (lastStdValues.size() < 13) {
             return false;
         }
-        Integer num = (Integer) lastStdValues.get((int) Math.ceil(6.5d)).measurement;
+        Integer num = lastStdValues.get((int) Math.ceil(6.5d)).measurement;
         Iterator<Measurement<Integer>> it = lastStdValues.iterator();
         while (it.hasNext()) {
-            if (((Integer) it.next().measurement).intValue() < num.intValue()) {
+            if (it.next().measurement.intValue() < num.intValue()) {
                 return false;
             }
         }
-        return !((Integer) lastStdValues.get((int) Math.ceil(6.5d)).measurement).equals(lastStdValues.get(((int) Math.ceil(6.5d)) - 1).measurement);
+        return !lastStdValues.get((int) Math.ceil(6.5d)).measurement.equals(lastStdValues.get(((int) Math.ceil(6.5d)) - 1).measurement);
     }
 
     public void measurePulse(TextureView textureView2, NewCameraService newCameraService2) {
@@ -121,7 +119,7 @@ public class OutputAnalyzer {
         this.ticksPassed = i2;
         if (i <= i2 * 45) {
             new Thread(new Runnable() {
-                public final void run() {
+                public void run() {
                     OutputAnalyzer.this.startAnalyzer(2000);
                 }
             }).start();

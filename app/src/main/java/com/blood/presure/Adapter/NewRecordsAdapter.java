@@ -39,11 +39,11 @@ public class NewRecordsAdapter extends RecyclerView.Adapter<NewRecordsAdapter.My
         public MyViewHolder(View view) {
             super(view);
             this.parent = view;
-            this.bpm = (TextView) view.findViewById(R.id.bpm);
-            this.result = (TextView) view.findViewById(R.id.result);
-            this.date = (TextView) view.findViewById(R.id.date);
-            this.state = (TextView) view.findViewById(R.id.state);
-            this.gender = (TextView) view.findViewById(R.id.gender);
+            this.bpm = view.findViewById(R.id.bpm);
+            this.result = view.findViewById(R.id.result);
+            this.date = view.findViewById(R.id.date);
+            this.state = view.findViewById(R.id.state);
+            this.gender = view.findViewById(R.id.gender);
             this.indicator = view.findViewById(R.id.indicator);
         }
     }
@@ -69,11 +69,9 @@ public class NewRecordsAdapter extends RecyclerView.Adapter<NewRecordsAdapter.My
         Drawable wrap = DrawableCompat.wrap(myViewHolder.indicator.getBackground());
         DrawableCompat.setTint(wrap, Color.parseColor(NewUtils.getBPMResultColor(MeUtils.getHeartState(newRecordModel.beat, MeUtils.getAge(), newRecordModel.state))));
         myViewHolder.indicator.setBackground(wrap);
-        myViewHolder.parent.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                if (NewRecordsAdapter.this.clicked != null) {
-                    NewRecordsAdapter.this.clicked.onClick(Integer.valueOf(i));
-                }
+        myViewHolder.parent.setOnClickListener(view -> {
+            if (NewRecordsAdapter.this.clicked != null) {
+                NewRecordsAdapter.this.clicked.onClick(i);
             }
         });
     }

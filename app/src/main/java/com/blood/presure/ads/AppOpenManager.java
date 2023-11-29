@@ -54,7 +54,6 @@ public class AppOpenManager implements LifecycleObserver, Application.ActivityLi
                     app_open_ad = null;
                     isShowingAd = false;
                     fetchAd();
-                    Helper.is_show_open_ad = true;
                 }
 
                 @Override
@@ -68,15 +67,8 @@ public class AppOpenManager implements LifecycleObserver, Application.ActivityLi
                 }
             };
 
-            Log.e("TAG", "showAdIfAvailable: 111 "+Helper.is_show_open_ad);
-            if (Helper.is_show_open_ad) {
-                app_open_ad.setFullScreenContentCallback(fullScreenContentCallback);
-                app_open_ad.show(currentActivity);
-            } else {
-                app_open_ad = null;
-                isShowingAd = false;
-                fetchAd();
-            }
+            app_open_ad.setFullScreenContentCallback(fullScreenContentCallback);
+            app_open_ad.show(currentActivity);
         } else {
             fetchAd();
         }

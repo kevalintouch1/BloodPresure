@@ -87,7 +87,7 @@
         android:layout_marginRight="60dp"
         android:layout_marginBottom="15dp"
         android:background="@drawable/rounded10"
-        android:backgroundTint="#14274E"
+        android:backgroundTint="@color/primary_light"
         android:gravity="center"
         android:paddingTop="14dp"
         android:paddingBottom="14dp"

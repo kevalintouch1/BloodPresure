@@ -1,5 +1,9 @@
 package com.blood.presure.Fragment;
 
+import static com.blood.presure.ads.AdmobAdsHelper.LoadAdMobInterstitialAd;
+
+import static com.blood.presure.ads.AdmobAdsHelper.ShowFullAds;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,7 +22,6 @@ import com.blood.presure.Measurement.MBridgeConstans;
 import com.blood.presure.Model.NewArticleModel;
 import com.blood.presure.Model.NewKnowledgeModel;
 import com.blood.presure.R;
-import com.blood.presure.Utils.AdAdmob;
 import com.blood.presure.Utils.NewSaveLanguageUtils;
 import com.blood.presure.activity.NewWebViewActivity;
 import com.blood.presure.helper.KnowledgeHelper;
@@ -28,9 +32,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class NewKnowledgeFragment extends Fragment {
-    private RecyclerView k_parents_vp;
-    private NewParentAdapter mNewParentAdapter;
-    private View parent;
     private RecyclerView rvPageDefault;
 
     public interface simpleCallback {
@@ -41,18 +42,16 @@ public class NewKnowledgeFragment extends Fragment {
         return layoutInflater.inflate(R.layout.fragment_knowledge_blood, viewGroup, false);
     }
 
-    public void onViewCreated(View view, Bundle bundle) {
+    public void onViewCreated(@NonNull View view, Bundle bundle) {
         super.onViewCreated(view, bundle);
-        this.parent = view;
-        this.k_parents_vp = (RecyclerView) view.findViewById(R.id.k_parents_vp);
-        this.rvPageDefault = (RecyclerView) this.parent.findViewById(R.id.k_pages);
+        RecyclerView k_parents_vp = view.findViewById(R.id.k_parents_vp);
+        this.rvPageDefault = view.findViewById(R.id.k_pages);
         this.rvPageDefault.setLayoutManager(new LinearLayoutManager(getContext()));
-        this.k_parents_vp.setLayoutManager(new LinearLayoutManager(getContext(), 0, false));
+        k_parents_vp.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
         List<NewKnowledgeModel> loadPagesParents = KnowledgeHelper.loadPagesParents(NewSaveLanguageUtils.getLanguage("languageTitle", getActivity()));
         NewParentAdapter newParentAdapter = new NewParentAdapter(loadPagesParents);
-        this.mNewParentAdapter = newParentAdapter;
-        this.k_parents_vp.setAdapter(newParentAdapter);
-        this.mNewParentAdapter.notifyDataSetChanged();
+        k_parents_vp.setAdapter(newParentAdapter);
+        newParentAdapter.notifyDataSetChanged();
         if (loadPagesParents.size() > 0) {
             showPages(loadPagesParents);
         }
@@ -72,7 +71,7 @@ public class NewKnowledgeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        new AdAdmob(getActivity()).LoadAdMobInterstitialAd(requireActivity());
+        LoadAdMobInterstitialAd(requireActivity());
     }
 
     public void showWebView(final String str, final String str2, final String str3) {
@@ -81,11 +80,10 @@ public class NewKnowledgeFragment extends Fragment {
         intent.putExtra("thumb", str2);
         intent.putExtra("title", str);
         NewKnowledgeFragment.this.startActivity(intent);
-        new AdAdmob(getActivity()).ShowAds(requireActivity());
+        ShowFullAds(requireActivity());
     }
 
     public class articles_adapter2 extends RecyclerView.Adapter<articles_adapter2.MyViewHolder> {
-
         public simpleCallback callback;
         public List<NewArticleModel> list;
         public List<NewKnowledgeModel> mListCat;
@@ -105,13 +103,11 @@ public class NewKnowledgeFragment extends Fragment {
             final NewArticleModel newArticleModel = this.list.get(i);
             final NewKnowledgeModel newKnowledgeModel = this.mListCat.get(i);
             myViewHolder.title.setText(newKnowledgeModel.title.replace("qst", "?"));
-            RequestManager with = Glide.with((View) myViewHolder.thumb);
+            RequestManager with = Glide.with(myViewHolder.thumb);
             with.load("file:///android_asset/" + newArticleModel.thumb).into(myViewHolder.thumb);
-            myViewHolder.parent.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View view) {
-                    if (articles_adapter2.this.callback != null) {
-                        articles_adapter2.this.callback.callback(newKnowledgeModel.title, newArticleModel.thumb, newArticleModel.path);
-                    }
+            myViewHolder.parent.setOnClickListener(view -> {
+                if (articles_adapter2.this.callback != null) {
+                    articles_adapter2.this.callback.callback(newKnowledgeModel.title, newArticleModel.thumb, newArticleModel.path);
                 }
             });
         }
@@ -130,8 +126,8 @@ public class NewKnowledgeFragment extends Fragment {
             public MyViewHolder(View view) {
                 super(view);
                 this.parent = view;
-                this.title = (TextView) view.findViewById(R.id.title);
-                this.thumb = (ImageView) view.findViewById(R.id.thumb);
+                this.title = view.findViewById(R.id.title);
+                this.thumb = view.findViewById(R.id.thumb);
                 this.f10181bg = view.findViewById(R.id.bg);
             }
         }

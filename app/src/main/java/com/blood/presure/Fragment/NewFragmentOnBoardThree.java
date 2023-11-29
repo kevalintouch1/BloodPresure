@@ -13,9 +13,6 @@ import com.blood.presure.R;
 
 
 public class NewFragmentOnBoardThree extends Fragment {
-    private ImageView mImgView;
-    private TextView tvContent;
-    private TextView tvTitle;
 
     public View onCreateView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
         View inflate = layoutInflater.inflate(R.layout.fragment_onboard, viewGroup, false);
@@ -24,12 +21,11 @@ public class NewFragmentOnBoardThree extends Fragment {
     }
 
     private void iniViews(View view) {
-        ImageView imageView = (ImageView) view.findViewById(R.id.img_bg_onboard);
-        this.mImgView = imageView;
+        ImageView imageView = view.findViewById(R.id.img_bg_onboard);
         imageView.setImageResource(R.drawable.bg_onboard_3);
-        this.tvTitle = (TextView) view.findViewById(R.id.tv_title);
-        this.tvContent = (TextView) view.findViewById(R.id.tv_content);
-        this.tvTitle.setText("Health Knowledge");
-        this.tvContent.setText("Build a good habit and upgrade healthy knowledge");
+        TextView tvTitle = view.findViewById(R.id.tv_title);
+        TextView tvContent = view.findViewById(R.id.tv_content);
+        tvTitle.setText("Health Knowledge");
+        tvContent.setText("Build a good habit and upgrade healthy knowledge");
     }
 }

@@ -14,8 +14,7 @@ import com.blood.presure.R;
 import java.util.List;
 
 public class NewParentAdapter extends RecyclerView.Adapter<NewParentAdapter.MyViewHolder> {
-    private List<NewKnowledgeModel> list;
-    private int selected = 0;
+    private final List<NewKnowledgeModel> list;
 
     public NewParentAdapter(List<NewKnowledgeModel> list2) {
         this.list = list2;
@@ -32,16 +31,15 @@ public class NewParentAdapter extends RecyclerView.Adapter<NewParentAdapter.MyVi
     }
 
     public int getItemViewType(int i) {
-        return i == this.selected ? 1 : 0;
+        int selected = 0;
+        return i == selected ? 1 : 0;
     }
 
     public void onBindViewHolder(MyViewHolder myViewHolder, @SuppressLint("RecyclerView") final int i) {
         myViewHolder.title.setText(this.list.get(i).title);
-        myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                NewParentAdapter.this.notifyItemChanged(i);
-                NewParentAdapter.this.notifyItemChanged(i);
-            }
+        myViewHolder.itemView.setOnClickListener(view -> {
+            NewParentAdapter.this.notifyItemChanged(i);
+            NewParentAdapter.this.notifyItemChanged(i);
         });
     }
 
@@ -54,7 +52,7 @@ public class NewParentAdapter extends RecyclerView.Adapter<NewParentAdapter.MyVi
 
         public MyViewHolder(View view) {
             super(view);
-            this.title = (TextView) view.findViewById(R.id.title);
+            this.title = view.findViewById(R.id.title);
         }
     }
 }

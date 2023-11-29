@@ -1,5 +1,9 @@
 package com.blood.presure.Fragment;
 
+import static com.blood.presure.ads.AdmobAdsHelper.LoadAdMobInterstitialAd;
+import static com.blood.presure.ads.AdmobAdsHelper.ShowFullAds;
+
+
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.ActivityNotFoundException;
@@ -25,7 +29,6 @@ import com.blood.presure.activity.NewSplashActivity;
 
 
 public class NewSettingsFragments extends Fragment {
-    private LinearLayout lnMode;
     View parent;
     TextView version;
 
@@ -39,8 +42,8 @@ public class NewSettingsFragments extends Fragment {
     public void onViewCreated(View view, Bundle bundle) {
         super.onViewCreated(view, bundle);
         this.parent = view;
-        TextView textView = (TextView) view.findViewById(R.id.version);
-        this.lnMode = (LinearLayout) view.findViewById(R.id.ln_mode);
+        TextView textView = view.findViewById(R.id.version);
+        LinearLayout lnMode = view.findViewById(R.id.ln_mode);
         this.version = textView;
         textView.setText(getVersion());
         this.parent.findViewById(R.id.rateUs).setOnClickListener(new View.OnClickListener() {
@@ -53,16 +56,17 @@ public class NewSettingsFragments extends Fragment {
                 try {
                     NewSettingsFragments.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse(FastSave.getInstance().getString("PRIVACY_POLICY",""))));
                 } catch (ActivityNotFoundException unused) {
-                    Toast.makeText(NewSettingsFragments.this.getContext(), "You don't have any app that can open this link", 0).show();
+                    Toast.makeText(NewSettingsFragments.this.getContext(), "You don't have any app that can open this link", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-        this.lnMode.setOnClickListener(new View.OnClickListener() {
+        lnMode.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 @SuppressLint("UnsafeOptInUsageError") Intent intent = new Intent(NewSettingsFragments.this.getActivity(), NewSplashActivity.class);
                 intent.putExtra("Change_Language", true);
                 intent.addFlags(67108864);
                 NewSettingsFragments.this.startActivity(intent);
+                ShowFullAds(requireActivity());
             }
         });
         this.parent.findViewById(R.id.lang).setOnClickListener(new View.OnClickListener() {
@@ -71,6 +75,7 @@ public class NewSettingsFragments extends Fragment {
                 intent.putExtra("Change_Language", true);
                 intent.addFlags(67108864);
                 NewSettingsFragments.this.startActivity(intent);
+                ShowFullAds(requireActivity());
             }
         });
     }
@@ -93,7 +98,7 @@ public class NewSettingsFragments extends Fragment {
         dialog.getWindow().setBackgroundDrawableResource(17170445);
         dialog.show();
         dialog.findViewById(R.id.bg).getLayoutParams().width = (int) (((double) NewUscreen.width) * 0.9d);
-        final RatingBar ratingBar = (RatingBar) dialog.findViewById(R.id.ratingBar);
+        final RatingBar ratingBar = dialog.findViewById(R.id.ratingBar);
         dialog.findViewById(R.id.rate).setEnabled(false);
         dialog.findViewById(R.id.rate).setAlpha(0.5f);
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
@@ -119,8 +124,9 @@ public class NewSettingsFragments extends Fragment {
         });
     }
 
-
-//    public <T> T mo43833$(int i) {
-//        return this.parent.findViewById(i);
-//    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        LoadAdMobInterstitialAd(requireActivity());
+    }
 }

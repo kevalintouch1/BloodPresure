@@ -58,7 +58,7 @@
         android:paddingTop="14dp"
         android:paddingBottom="14dp"
         android:text="@string/save"
-        android:textColor="#14274E" />
+        android:textColor="@color/primary_light" />
 
     <TextView
         android:id="@+id/cancel"

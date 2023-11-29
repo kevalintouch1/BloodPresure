@@ -40,10 +40,10 @@ public class NewTrackerFragment extends Fragment {
     public void onViewCreated(View view, Bundle bundle) {
         super.onViewCreated(view, bundle);
         this.parent = view;
-        this.viewPager = (ViewPager) view.findViewById(R.id.viewPager);
-        this.average = (TextView) this.parent.findViewById(R.id.average);
-        this.max = (TextView) this.parent.findViewById(R.id.max);
-        this.min = (TextView) this.parent.findViewById(R.id.min);
+        this.viewPager = view.findViewById(R.id.viewPager);
+        this.average = this.parent.findViewById(R.id.average);
+        this.max = this.parent.findViewById(R.id.max);
+        this.min = this.parent.findViewById(R.id.min);
     }
 
     public void updateData() {

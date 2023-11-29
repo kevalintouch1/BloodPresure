@@ -8,7 +8,7 @@ import android.os.Build;
 
 import com.appizona.yehiahd.fastsave.FastSave;
 import com.blood.presure.Model.NewSoundManager;
-import com.blood.presure.Utils.AppOpenManager;
+import com.blood.presure.ads.AppOpenManager;
 import com.blood.presure.Utils.NewLanguageUtils;
 import com.onesignal.OneSignal;
 import com.onesignal.debug.LogLevel;
@@ -29,7 +29,7 @@ public class NewBloodApplication extends Application {
         if (Build.VERSION.SDK_INT >= 26) {
             NotificationChannel notificationChannel = new NotificationChannel("channel1", "FIRSTChannel", 2);
             notificationChannel.setLockscreenVisibility(1);
-            ((NotificationManager) getSystemService(NotificationManager.class)).createNotificationChannel(notificationChannel);
+            getSystemService(NotificationManager.class).createNotificationChannel(notificationChannel);
         }
 
         FastSave.init(this);

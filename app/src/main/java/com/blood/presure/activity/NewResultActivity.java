@@ -1,5 +1,9 @@
 package com.blood.presure.activity;
 
+
+
+import static com.blood.presure.ads.AdmobAdsHelper.ShowFullAds;
+
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +22,7 @@ import com.blood.presure.Model.NewCatModel;
 import com.blood.presure.Model.NewRecordModel;
 import com.blood.presure.Utils.NewSaveLanguageUtils;
 import com.blood.presure.Utils.NewUtils;
+import com.blood.presure.ads.AdmobAdsHelper;
 import com.blood.presure.chart.NewChartView;
 import com.blood.presure.helper.KnowledgeHelpers;
 import com.blood.presure.Utils.MeUtils;
@@ -55,22 +60,22 @@ public class NewResultActivity extends NewBaseActivity {
 
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        setContentView((int) R.layout.activity_result);
+        setContentView(R.layout.activity_result);
         NewSaveLanguageUtils.saveLanguage("resultOpens", (NewSaveLanguageUtils.LoadPref("resultOpens", this) + 1) + "", this);
-        this.slow = (TextView) findViewById(R.id.slow);
-        this.normal = (TextView) findViewById(R.id.normal);
-        this.fast = (TextView) findViewById(R.id.fast);
+        this.slow = findViewById(R.id.slow);
+        this.normal = findViewById(R.id.normal);
+        this.fast = findViewById(R.id.fast);
         this.buttons = findViewById(R.id.linearLayout);
-        this.recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        this.resultText = (TextView) findViewById(R.id.resultText);
+        this.recyclerView = findViewById(R.id.recyclerView);
+        this.resultText = findViewById(R.id.resultText);
         this.slowI = findViewById(R.id.slowIndicator);
         this.normalI = findViewById(R.id.normalIndicator);
         this.fastI = findViewById(R.id.fastIndicator);
         Gson gson = new Gson();
         if (getIntent().getExtras() == null) {
-            this.f10185r = (NewRecordModel) gson.fromJson(getIntent().getStringExtra("record"), NewRecordModel.class);
+            this.f10185r = gson.fromJson(getIntent().getStringExtra("record"), NewRecordModel.class);
         } else if (getIntent().hasExtra("record")) {
-            this.f10185r = (NewRecordModel) gson.fromJson(getIntent().getStringExtra("record"), NewRecordModel.class);
+            this.f10185r = gson.fromJson(getIntent().getStringExtra("record"), NewRecordModel.class);
         } else {
             try {
                 this.newRecordModels = DataCenter.getRecords();
@@ -83,20 +88,20 @@ public class NewResultActivity extends NewBaseActivity {
                 return;
             }
         }
-        this.bpm = (TextView) findViewById(R.id.bpm);
-        this.time = (TextView) findViewById(R.id.time);
-        this.delete = (ImageView) findViewById(R.id.delete);
+        this.bpm = findViewById(R.id.bpm);
+        this.time = findViewById(R.id.time);
+        this.delete = findViewById(R.id.delete);
         TextView textView = this.bpm;
         textView.setText(this.f10185r.beat + "");
         this.time.setText(NewUtils.formatDate(this.f10185r.date, "MMMM dd,yyyy HH:mm"));
-        TextView textView2 = (TextView) findViewById(R.id.save);
+        TextView textView2 = findViewById(R.id.save);
         this.save = textView2;
         textView2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 NewResultActivity.this.save();
             }
         });
-        TextView textView3 = (TextView) findViewById(R.id.recheck);
+        TextView textView3 = findViewById(R.id.recheck);
         this.recheck = textView3;
         textView3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -115,6 +120,8 @@ public class NewResultActivity extends NewBaseActivity {
         }
         drawBeats();
         showResult();
+        new AdmobAdsHelper(this).bannerAds(this, findViewById(R.id.adView));
+        AdmobAdsHelper.LoadAdMobInterstitialAd(this);
     }
 
     private void showResult() {
@@ -167,12 +174,11 @@ public class NewResultActivity extends NewBaseActivity {
             NewCatModel newCatModel = new NewCatModel("slow", loadPagesParents.get(1).path + "/" + str, language);
             newCatModel.loadPages();
             Collections.shuffle(newCatModel.pages);
-            this.recyclerView.setAdapter(new NewArticlesAdapterThree(newCatModel.pages, new NewArticlesAdapterThree.simpleCallback() {
-                public void callback(Object obj) {
-                    Intent intent = new Intent(NewResultActivity.this, NewWebViewActivity.class);
-                    intent.putExtra("article", new Gson().toJson((Object) (NewArticleModel) obj));
-                    NewResultActivity.this.startActivity(intent);
-                }
+            this.recyclerView.setAdapter(new NewArticlesAdapterThree(newCatModel.pages, obj -> {
+                Intent intent = new Intent(NewResultActivity.this, NewWebViewActivity.class);
+                intent.putExtra("article", new Gson().toJson(obj));
+                NewResultActivity.this.startActivity(intent);
+                ShowFullAds(NewResultActivity.this);
             }, this));
         }
     }
@@ -183,20 +189,14 @@ public class NewResultActivity extends NewBaseActivity {
         dialog.show();
         NewUscreen.Init(this);
         dialog.findViewById(R.id.bg).getLayoutParams().width = (int) (((float) NewUscreen.width) * 0.9f);
-        dialog.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
-        dialog.findViewById(R.id.delete).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                NewResultActivity.this.newRecordModels.remove(NewResultActivity.this.f10185r);
-                DataCenter.saveRecords(NewResultActivity.this.newRecordModels);
-                NewResultActivity resultActivity = NewResultActivity.this;
-                Toast.makeText(resultActivity, resultActivity.getString(R.string.record_deleted), 1).show();
-                dialog.dismiss();
-                NewResultActivity.this.finish();
-            }
+        dialog.findViewById(R.id.cancel).setOnClickListener(view -> dialog.dismiss());
+        dialog.findViewById(R.id.delete).setOnClickListener(view -> {
+            NewResultActivity.this.newRecordModels.remove(NewResultActivity.this.f10185r);
+            DataCenter.saveRecords(NewResultActivity.this.newRecordModels);
+            NewResultActivity resultActivity = NewResultActivity.this;
+            Toast.makeText(resultActivity, resultActivity.getString(R.string.record_deleted), 1).show();
+            dialog.dismiss();
+            NewResultActivity.this.finish();
         });
     }
 
@@ -222,7 +222,7 @@ public class NewResultActivity extends NewBaseActivity {
     }
 
     public void drawBeats() {
-        NewChartView newChartView = (NewChartView) findViewById(R.id.graphTextureView);
+        NewChartView newChartView = findViewById(R.id.graphTextureView);
         ArrayList arrayList = new ArrayList();
         for (int i = 0; i < 6; i++) {
             int random = (int) ((Math.random() * 4.0d) + 10.0d);
@@ -234,5 +234,11 @@ public class NewResultActivity extends NewBaseActivity {
         }
         newChartView.data = arrayList;
         newChartView.invalidate();
+    }
+
+    @Override
+    public void onBackPressed() {
+        ShowFullAds(NewResultActivity.this);
+        finish();
     }
 }

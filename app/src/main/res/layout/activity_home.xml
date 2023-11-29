@@ -5,175 +5,76 @@
     android:background="@color/white">
 
     <RelativeLayout
-        android:id="@+id/rl"
+        android:id="@+id/ll"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_80sdp"
-        android:layout_gravity="top|center_vertical|center_horizontal|center"
-        android:background="#14274E" />
+        android:background="@color/primary_light"
+        android:orientation="horizontal">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20dp"
+            android:text="Home"
+            android:textColor="@color/white"
+            android:textSize="26sp"
+            android:textStyle="bold" />
 
-        <RelativeLayout
-            android:id="@+id/ll"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_80sdp"
-            android:orientation="horizontal">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:layout_gravity="center"
-                android:layout_marginStart="@dimen/_20sdp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:src="@mipmap/ic_launcher" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="Home"
-                android:textColor="@color/white"
-                android:textSize="26sp"
-                android:textStyle="bold" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/img_how_to_use"
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_gravity="center"
-                android:layout_marginEnd="@dimen/_20sdp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:padding="@dimen/_2sdp"
-                android:src="@drawable/ic_how_to_use" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/linearLayout5"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_130sdp"
-            android:layout_below="@+id/ll"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginBottom="4dp"
-            android:background="@drawable/bg_heart_rate"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:id="@+id/heart_rate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="?attr/selectableItemBackground"
-                android:orientation="horizontal"
-                android:visibility="gone">
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/heart_rate_icon" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="16dp"
-                        android:paddingTop="8dp"
-                        android:paddingRight="16dp"
-                        android:text="@string/heart_rate_bpm"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/color_bottom" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
-                        android:paddingBottom="8dp"
-                        android:text="@string/measure_and_track_your_heart_rate"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:textColor="#000"
-                        android:textSize="10sp" />
-                </LinearLayout>
-            </LinearLayout>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/linearLayout7"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_130sdp"
-            android:layout_below="@+id/linearLayout5"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="4dp"
-            android:background="@drawable/bg_blood"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:id="@+id/blood_pressure"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="?attr/selectableItemBackground"
-                android:orientation="horizontal"
-                android:paddingLeft="16dp"
-                android:paddingTop="6dp"
-                android:paddingRight="16dp"
-                android:paddingBottom="6dp"
-                android:visibility="gone">
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/blood_pressure_icon" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="16dp"
-                        android:paddingTop="8dp"
-                        android:paddingRight="16dp"
-                        android:text="@string/blood_pressure"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/color_bottom" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
-                        android:paddingBottom="8dp"
-                        android:text="@string/track_blood_pressure_and_protect_your_self"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:textColor="#000"
-                        android:textSize="10sp" />
-                </LinearLayout>
-            </LinearLayout>
-        </RelativeLayout>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_how_to_use"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="@dimen/_2sdp"
+            android:src="@drawable/ic_how_to_use" />
     </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/native_ads_1"
+    <RelativeLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_130sdp"
+        android:layout_below="@+id/ll"
+        android:background="@drawable/bg_heart_rate"
+        android:orientation="vertical" />
+
+    <RelativeLayout
+        android:id="@+id/linearLayout7"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_130sdp"
+        android:layout_below="@+id/linearLayout5"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/bg_blood"
+        android:orientation="vertical" />
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/_2sdp"
-        android:orientation="horizontal" />
+        android:layout_margin="5dp"
+        android:gravity="bottom"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@color/gray2"
+            android:gravity="center"
+            android:text="ADs Space"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:id="@+id/native_ads_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|bottom"
+            android:orientation="horizontal" />
+
+    </FrameLayout>
+
 
 </RelativeLayout>
